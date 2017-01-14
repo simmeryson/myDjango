@@ -1,10 +1,11 @@
-{% extends "gkblog/base.html" %}
+{% extends "gkblog/../base.html" %}
 
 {% block content %}
     <div class="posts">
         {% for post in post_list %}
             <section class="post">
                 <header class="post-header">
+                    <h2 class="post-title"><a href="{% url "detail" id=post.id %}">{{ post.title }}</a></h2>
                     <h2 class="post-title">{{ post.title }}</h2>
 
                     <p class="post-meta">
@@ -18,6 +19,7 @@
                         {{ post.content }}
                     </p>
                 </div>
+                <a class="pure-button" href="{% url "detail" id=post.id %}">Read More >>> </a>
             </section>
         {% endfor %}
     </div><!-- /.blog-post -->

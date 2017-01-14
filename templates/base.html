@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -5,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A layout example that shows off a blog page with a list of posts.">
 
-    <title>Andrew Liu Blog</title>
+    <title>Guok Blog</title>
+{#    <link rel="stylesheet" type="text/css" href="{% static 'gkblog/home/markdown.css' %}">#}
+    <link rel="stylesheet" type="text/css" href="{% static 'gkblog/home/style.css' %}">
     <link rel="stylesheet" href="http://labfile.oss.aliyuncs.com/courses/487/pure-min.css">
     <link rel="stylesheet" href="http://labfile.oss.aliyuncs.com/courses/487/grids-responsive-min.css">
     <link rel="stylesheet" href="http://labfile.oss.aliyuncs.com/courses/487/blog.css">
@@ -19,7 +22,7 @@
             <nav class="nav">
                 <ul class="nav-list">
                     <li class="nav-item">
-                        <a class="pure-button" href="https://github.com/Andrew-liu">Github</a>
+                        <a class="pure-button" href="https://github.com/simmeryson">Github</a>
                     </li>
                     <li class="nav-item">
                         <a class="pure-button" href="http://weibo.com/dinosaurliu">Weibo</a>
