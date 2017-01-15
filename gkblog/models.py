@@ -12,8 +12,9 @@ class Article(models.Model):
     date_time = models.DateTimeField(auto_now_add=True)
     content = models.TextField(blank=True, null=True)
 
-    # def get_absolute_url(self):
-    #     return reverse('issue_detail', kwargs={'pk': self.pk})
+    @models.permalink
+    def get_absolute_url(self):
+        return 'issue_detail', None, {'object_id': self.id}
 
     def __str__(self):
         return self.title

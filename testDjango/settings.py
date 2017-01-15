@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'west',
     'gkblog',
+    'charpicture',
 ]
 
 from django.conf import global_settings
@@ -136,5 +137,5 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
-    '/gkblog/home/',
+    '/home/','/charpic/',
 )
