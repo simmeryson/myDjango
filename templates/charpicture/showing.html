@@ -5,7 +5,9 @@
     <title>Title</title>
 </head>
 <body>
-<img src='{{ img }}'/>
+{% for img in imgs %}
+    <img src='{{ img.img.url }}'/>
+{% endfor %}
 <textarea rows={{ width }} cols={{ height }}>
 {{ txt }}
 </textarea>

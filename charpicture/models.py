@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
 from django.db import models
@@ -22,5 +23,10 @@ class Item(models.Model):
 class IMG(models.Model):
     img = models.ImageField(upload_to='upload')
 
-    def __str__(self):
-        return self.title
+
+class FileSimpleModel(models.Model):
+    """
+    文件接收 Model
+    upload_to：表示文件保存位置
+    """
+    file_field = models.FileField(upload_to="upload")
