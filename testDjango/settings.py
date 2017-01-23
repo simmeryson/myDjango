@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'gkblog',
     'charpicture',
     'captcha',
+    'ticket',
 ]
 
 from django.conf import global_settings

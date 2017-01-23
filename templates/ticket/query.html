@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="sear-box quick-sear-box">
+    <form id="queryLeftForm" method="get" enctype="application/x-www-form-urlencoded">
+        <div class="dfc" id="dfc">
+            <ul>
+                <li><input name="singleRoundType" type="radio" id="dc" class="radio" checked="checked" value="dc">
+                    <label for="dc" id="dc_label" class="cursor">单程</label>
+                </li>
+                <li><input name="singleRoundType" type="radio" id="wf" class="radio" value="wc">
+                    <label for="wf" id="wf_label" class="cursor">往返</label>
+                </li>
+            </ul>
+        </div>
+        <div class="s-info" id="place_area">
+            <ul>
+                <li>
+                    <span class="label">
+                        <label id="fromStationText_label">出发地</label>
+                    </span>
+                    <div class="inp-w"><input id="fromStation" type="hidden"
+                                              name="from_station">
+                        <input type="text" id="fromStationText" class="inp-txt inp_selected"
+                               name="from_station">
+                        <span class="i-city" id="fromStation_icon_image" style="cursor: pointer;"></span>
+                    </div>
+                </li>
+                <li class="i-change i-change2" id="change_station"
+                    style="background-position: -67px -96px; cursor: pointer;"></li>
+                <li>
+                    <span class="label">
+                    <label id="toStationText_label"> 目的地</label>
+                    </span>
+                    <div class="inp-w"><input id="toStation" type="hidden" name="to_station">
+                        <input type="text" id="toStationText" class="inp-txt"
+                               name="to_station">
+                        <span class="i-city" id="toStation_icon_image" style="cursor: pointer;"></span>
+                    </div>
+                </li>
+                <li><span class="label"> 出发日</span>
+                    <div class="inp-w" style="z-index:1200">
+                        <input type="text" class="inp_selected"
+                               name="date" id="date"
+                               value="2013-06-07">
+                        <!--	<div id="train_date_" style="position: absolute; height: 250px;z-index:1200;left:0; top:30px;"></div>-->
+                        <span id="date_icon_1" class="i-date"></span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="quick-s">
+            <ul>
+                <li><input type="radio" id="sf1" class="radio" name="sf" checked="checked">
+                    <label id="sf1_label" for="sf1" class="cursor">普通</label>
+                </li>
+                <li><input type="radio" id="sf2" class="radio" name="sf">
+                    <label id="sf2_label" for="sf2" class="cursor">学生</label>
+                </li>
+            </ul>
+            <button id="submit" type="submit" class="btn btn-default">查询</button>
+        </div>
+    </form>
+</div>
+<div>
+    <textarea rows={{ width }} cols={{ height }}>
+{{ post_list }}
+</textarea>
+</div>
+</body>
+</html>
