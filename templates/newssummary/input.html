@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="txt">
+    <button type="submit">上传</button>
+</form>
+{% for post in post_list %}
+    <p>
+    {{ post }}
+    </p>
+{% endfor %}
+</body>
+</html>

@@ -28,6 +28,7 @@ urlpatterns = [
     url(r'^charpic/', include('charpicture.urls')),
     url(r'^captcha/', include('captcha.urls')),
     url(r'^ticket/', include('ticket.urls')),
+    url(r'^summary/', include('newssummary.urls')),
     #include语法相当于二级路由策略，它将接收到的url地址去除了它前面的正则表达式，将剩下的字符串传递给下一级路由进行判断
     #regex不会去匹配GET或POST参数或域名，例如对于https://www.example.com/myapp， regex只尝试匹配myapp/。对于https://www.example.com/myapp/?page=3， regex也只尝试匹配myapp/
 ]
