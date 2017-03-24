@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'charpicture',
     'captcha',
     'ticket',
+    'markdownHtml',
 ]
 
 from django.conf import global_settings
