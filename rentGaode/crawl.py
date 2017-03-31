@@ -4,7 +4,7 @@ from urlparse import urljoin
 import requests
 import csv
 
-url = "http://xa.58.com/pinpaigongyu/pn/{page}"
+url = "http://bj.58.com/pinpaigongyu/pn/{page}/?minprice=2000_4000"
 
 #已完成的页数序号，初时为0
 page = 0
