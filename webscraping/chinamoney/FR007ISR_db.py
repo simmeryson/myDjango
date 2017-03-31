@@ -1,8 +1,6 @@
 # -*- coding:utf-8 -*-
-import csv
 import MySQLdb
 import time
-
 import bs4
 from bs4 import BeautifulSoup
 import requests
@@ -18,7 +16,7 @@ TABLE_NAME = 'FR007ISR'
 
 url = "http://www.chinamoney.com.cn/fe-c/interestRateSwapCurve3MHistoryAction.do?lan=cn"
 
-formdata = "startDate=%s&endDate=%s&bidAskType=&bigthType=FR007&interestRateType=&message="
+form_data = "startDate=%s&endDate=%s&bidAskType=&bigthType=FR007&interestRateType=&message="
 
 date_list = [('2017-03-01', '2017-03-29'), ('2017-02-01', '2017-02-28'), ('2017-01-01', '2017-01-31'),
              ('2016-12-01', '2016-12-31'), ('2016-11-01', '2016-11-30'), ('2016-10-01', '2016-10-31'),
@@ -33,10 +31,10 @@ def create_table(cursor):
     # 创建表
     cursor.execute(
         'CREATE TABLE IF NOT EXISTS %s '
-        '(id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,'
-        'date DATE NOT NULL, '
+        '(id int(11) NOT NULL AUTO_INCREMENT,'
+        'date DATE NOT NULL , '
         'curve_name VARCHAR(40),'
-        'price_type VARCHAR (10),'
+        'price_type VARCHAR(10),'
         '1M FLOAT ,'
         '3M FLOAT ,'
         '6M FLOAT ,'
@@ -47,9 +45,11 @@ def create_table(cursor):
         '4Y FLOAT ,'
         '5Y FLOAT ,'
         '7Y FLOAT ,'
-        '10Y FLOAT '
+        '10Y FLOAT,'
+        'PRIMARY KEY(id)'
         ')'
-        'ENGINE=InnoDB AUTO_INCREMENT=100'
+        'ENGINE=InnoDB '
+        'AUTO_INCREMENT=1'
         % TABLE_NAME)
 
 
@@ -97,8 +97,8 @@ def parse_title(html):
 
 
 # post发送请求
-def send_request(data):
-    post_data = {'startDate': data[0], 'endDate': data[1],
+def send_request(date):
+    post_data = {'startDate': date[0], 'endDate': date[1],
                  'bidAskType': '', 'bigthType': 'FR007',
                  'interestRateType': '', 'message': ''}
     session = requests.Session()
@@ -131,6 +131,4 @@ def connect_db():
 
 
 # 从日期列表中获取数据
-# query_from_datelist(date_list)
-
 connect_db()
