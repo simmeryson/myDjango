@@ -53,19 +53,22 @@ class Scraping(object):
         return title_list
 
     # post发送请求
-    def send_request(self, date):
-        self.form_data['startDate'] = date[0]
-        self.form_data['endDate'] = date[1]
+    def send_request(self):
         session = requests.Session()
         response = session.post(self.url, self.form_data, headers=self.headers)
         html = BeautifulSoup(response.text, "html5lib")
         return html
 
-    def query_from_datelist(self, datelist, parse_html, save_row):
+    def make_post_para(self, paras):
+        for (k, v) in paras.iteritems():
+            self.form_data[k] = v
+
+    def query_from_datelist(self, datelist, post_para, parse_html, insert_db_name_sql,insert_db):
         for date in datelist:
-            html = self.send_request(date)
+            self.make_post_para(post_para)
+            html = self.send_request()
             # 解析出 行数据
-            parse_html(html, save_row)
+            parse_html(html, insert_db_name_sql, insert_db)
             time.sleep(3)
 
     # 查询今天的数据

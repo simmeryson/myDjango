@@ -8,13 +8,9 @@ PSSWRD = 'kai123'
 
 
 class DbManager(object):
-    def __init__(self, create_table, create_db, insert_db):
+    def __init__(self):
         reload(sys)
         sys.setdefaultencoding('utf-8')
-
-        self.create_db_ = create_db
-        self.create_table_ = create_table
-        self.insert_db_ = insert_db
 
         try:
             self.conn = MySQLdb.connect(host='127.0.0.1', user=USER_NAME, passwd=PSSWRD, connect_timeout=10,
@@ -31,11 +27,20 @@ class DbManager(object):
         if self.conn:
             self.conn.close()
 
-    def create_db(self):
-        self.create_db_(self.conn, self.cursor)
+    def create_db(self, db_name):
+        self.cursor.execute("CREATE DATABASE IF NOT EXISTS %s" % db_name)
+        self.conn.select_db(db_name)
+        self.cursor.execute("SELECT VERSION()")
+        data = self.cursor.fetchone()
+        print "Database version : %s " % data
 
-    def create_table(self):
-        self.create_table_(self.cursor)
+    def create_drop_table(self, sql):
+        self.cursor.execute(sql)
 
-    def insert_db(self, row):
-        self.insert_db_(self.cursor, self.conn, row)
+    def insert_db(self, sql):
+        self.cursor.execute(sql)
+        self.conn.commit()
+
+    def query(self, sql):
+        self.cursor.execute(sql)
+        return self.cursor.fetchall()
