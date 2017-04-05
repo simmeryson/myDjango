@@ -1,5 +1,7 @@
 # -*- coding:utf-8 -*-
 # 保存 国债收益率,央行票据,政策性金融债,超短期融资券,政府支持机构债券,短期融资券,中期票据,企业债,同业存单  等债权收益率
+# 最大按年查询
+import MySQLdb
 import bs4
 import time
 
@@ -11,9 +13,9 @@ TABLE_NAME = 'ClosedYieldCurve'
 
 url = "http://www.chinamoney.com.cn/fe-c/closedYieldCurveHistoryQueryAction.do"
 
-post_data = {'startDateTool': '', 'endDateTool': '', 'showKey': '1,2,3,', 'termId': 1.0,
-             'bondType': '', 'start': '', 'end': '', 'bondTypeTemp': '', 'reference': 1, 'reference': 2,
-             'reference': 3, 'termIdTemp': 1.0
+post_data = {'startDateTool': '', 'endDateTool': '', 'showKey': '1,', 'termId': 1.0,
+             'bondType': '', 'start': '', 'end': '', 'bondTypeTemp': '', 'reference': 1,
+             'termIdTemp': 1.0
              }
 
 singleDay = [('2017-03-01', '2017-03-01')]
@@ -22,7 +24,6 @@ date_list = [('2006-01-01', '2006-12-31'), ('2007-01-01', '2007-12-31'), ('2008-
              ('2009-01-01', '2009-12-31'), ('2010-01-01', '2010-12-31'), ('2011-01-01', '2011-12-31'),
              ('2012-01-01', '2012-12-31'), ('2013-01-01', '2013-12-31'), ('2014-01-01', '2014-12-31'),
              ('2015-01-01', '2015-12-31'), ('2016-01-01', '2016-12-31'), ('2017-01-01', '2017-03-31')]
-flag_get_name = False
 
 
 # 创建表ClosedYieldCurve
@@ -42,8 +43,6 @@ def create_table_sql(table_name):
           "date DATE NOT NULL ," \
           "`期限` FLOAT ," \
           "`到期收益率` FLOAT ," \
-          "`即期收益率` FLOAT , " \
-          "`远期收益率` FLOAT , " \
           "PRIMARY KEY(id)) " \
           "ENGINE=InnoDB " \
           "AUTO_INCREMENT=1 " \
@@ -65,10 +64,10 @@ def insert_db_name_sql(row):
 # 插入每种债券类型收益率数据
 def insert_db_sql(table_name, row):
     # 引号坑死人
-    sql = "insert into %s (date,`期限`,`到期收益率`,`即期收益率`,`远期收益率`) " \
-          "VALUES ('%s', %s, %s, %s, %s)" \
+    sql = "insert into `%s` (date,`期限`,`到期收益率`) " \
+          "VALUES ('%s', %s, %s)" \
           % (
-              table_name, row[0], row[1], row[2], row[3], row[4]
+              table_name, row[0], row[1], row[2]
           )
     return sql
 
@@ -87,13 +86,17 @@ def parse_html_name(html, save_row, insert_into):
 
 # 解析收益率数据
 def parse_html(html, table_name, save_row, insert_into):
-    trs = html.find("td", {'class': 'dreport-title'}).parent.find_next_siblings('tr')
     try:
+        trs = html.find("td", {'class': 'dreport-title'}).parent.find_next_siblings('tr')
         for tr in trs:
             row = []
             for td in tr.find_all('td'):
-                row.append(td.get_text)
-            insert_into(save_row(table_name, row))
+                if td.string:
+                    row.append(td.string.encode('utf-8').replace("\xc2\xa0", "").strip())
+            if len(row) == 3:
+                insert_into(save_row(table_name, row))
+    except MySQLdb.Error, e:
+        print "Mysql Error %d: %s" % (e.args[0], e.args[1])
     except:
         print "%s no data!" % table_name
     finally:
@@ -109,7 +112,7 @@ def do_scraping(dates_list):
 
     id_list = db_name.query("select id from %s" % TABLE_NAME)
 
-    scrap_yield_data(dates_list, db_name, id_list, scraper)
+    # scrap_yield_data(dates_list, db_name, id_list, scraper)
 
     db_name.close_db()
 
@@ -119,7 +122,7 @@ def scrap_yield_data(dates_list, db_name, id_list, scraper):
     for bond_id in id_list:
         scraper.make_post_para({'bondType': bond_id[0], 'bondTypeTemp': bond_id[0]})
         # db_name.drop_table(bond_id[0])
-        db_name.create_drop_table(create_table_sql(bond_id[0]))
+        db_name.create_table(create_table_sql(bond_id[0]))
         for date in dates_list:
             scraper.make_post_para({'startDateTool': date[0], 'endDateTool': date[1], 'start': date[0], 'end': date[1]})
             html = scraper.send_request()
@@ -130,7 +133,7 @@ def scrap_yield_data(dates_list, db_name, id_list, scraper):
 # 抓取各债券类型和id
 def scrap_names(date, db_name, scraper):
     # db_name.drop_table(TABLE_NAME)
-    db_name.create_drop_table(create_table_name_sql())
+    db_name.create_table(create_table_name_sql())
 
     scraper.make_post_para(
         {'startDateTool': date[0], 'endDateTool': date[1], 'start': date[0], 'end': date[1], 'bondType': 100001,
@@ -142,4 +145,4 @@ def scrap_names(date, db_name, scraper):
     time.sleep(3)
 
 
-do_scraping(singleDay)
+do_scraping(date_list)

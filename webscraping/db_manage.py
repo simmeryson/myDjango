@@ -1,6 +1,5 @@
 # -*- coding:utf-8 -*-
 import MySQLdb
-import time
 import sys
 
 USER_NAME = 'root'
@@ -34,7 +33,7 @@ class DbManager(object):
         data = self.cursor.fetchone()
         print "Database version : %s " % data
 
-    def create_drop_table(self, sql):
+    def create_table(self, sql):
         self.cursor.execute(sql)
 
     def drop_table(self, table_name):

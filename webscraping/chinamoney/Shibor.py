@@ -77,7 +77,7 @@ def do_scraping():
     db = DbManager()
     db.create_db(DB_NAME)
     db.drop_table(TABLE_NAME)
-    db.create_drop_table(create_table_sql())
+    db.create_table(create_table_sql())
     query_from_datelist(date_list, db.insert_db, scraper)
     db.close_db()
 
