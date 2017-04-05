@@ -25,12 +25,6 @@ date_list = [('2006-01-01', '2006-12-31'), ('2007-01-01', '2007-12-31'), ('2008-
 flag_get_name = False
 
 
-# 删除表
-def drop_table_sql(table_name):
-    drop_sql = "DROP TABLE IF EXISTS %s" % table_name
-    return drop_sql
-
-
 # 创建表ClosedYieldCurve
 def create_table_name_sql():
     sql = "CREATE TABLE IF NOT EXISTS ClosedYieldCurve " \
@@ -124,17 +118,18 @@ def do_scraping(dates_list):
 def scrap_yield_data(dates_list, db_name, id_list, scraper):
     for bond_id in id_list:
         scraper.make_post_para({'bondType': bond_id[0], 'bondTypeTemp': bond_id[0]})
-        # db_name.create_drop_table(drop_table_sql(name[0]))
+        # db_name.drop_table(bond_id[0])
         db_name.create_drop_table(create_table_sql(bond_id[0]))
         for date in dates_list:
             scraper.make_post_para({'startDateTool': date[0], 'endDateTool': date[1], 'start': date[0], 'end': date[1]})
             html = scraper.send_request()
             parse_html(html, bond_id[0], insert_db_sql, db_name.insert_db)
+            time.sleep(2)
 
 
 # 抓取各债券类型和id
 def scrap_names(date, db_name, scraper):
-    # db_name.create_drop_table(drop_table_sql(TABLE_NAME))
+    # db_name.drop_table(TABLE_NAME)
     db_name.create_drop_table(create_table_name_sql())
 
     scraper.make_post_para(

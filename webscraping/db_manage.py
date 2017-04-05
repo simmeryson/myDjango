@@ -37,6 +37,10 @@ class DbManager(object):
     def create_drop_table(self, sql):
         self.cursor.execute(sql)
 
+    def drop_table(self, table_name):
+        drop_sql = "DROP TABLE IF EXISTS `%s`" % table_name
+        self.cursor.execute(drop_sql)
+
     def insert_db(self, sql):
         self.cursor.execute(sql)
         self.conn.commit()
