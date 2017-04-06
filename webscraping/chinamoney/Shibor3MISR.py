@@ -94,9 +94,8 @@ def scrap_data(dates_list, db, scraper):
     db.create_table(create_table_sql())
     for date in dates_list:
         scraper.make_post_para({'startDate': date[0], 'endDate': date[1]})
-        html = scraper.send_request()
+        html = scraper.send_request_post()
         parse_html(html, insert_db_sql, db.insert_db)
         time.sleep(2)
 
-
-do_scraping(date_list)
+# do_scraping(date_list)

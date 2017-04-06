@@ -125,7 +125,7 @@ def scrap_yield_data(dates_list, db_name, id_list, scraper):
         db_name.create_table(create_table_sql(bond_id[0]))
         for date in dates_list:
             scraper.make_post_para({'startDateTool': date[0], 'endDateTool': date[1], 'start': date[0], 'end': date[1]})
-            html = scraper.send_request()
+            html = scraper.send_request_post()
             parse_html(html, bond_id[0], insert_db_sql, db_name.insert_db)
             time.sleep(2)
 
@@ -138,11 +138,10 @@ def scrap_names(date, db_name, scraper):
     scraper.make_post_para(
         {'startDateTool': date[0], 'endDateTool': date[1], 'start': date[0], 'end': date[1], 'bondType': 100001,
          'bondTypeTemp': 100001})
-    html = scraper.send_request()
+    html = scraper.send_request_post()
     # 解析出 行数据
     parse_html_name(html, insert_db_name_sql, db_name.insert_db)
     print "抓取各债券类型和id 完成";
     time.sleep(3)
 
-
-do_scraping(date_list)
+# do_scraping(date_list)

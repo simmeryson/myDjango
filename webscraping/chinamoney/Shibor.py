@@ -67,7 +67,7 @@ def parse_html(html, save_row):
 def query_from_datelist(dates_list, insert_db, scraper):
     for date in dates_list:
         scraper.make_post_para({'startDate': date[0], 'endDate': date[1]})
-        html = scraper.send_request()
+        html = scraper.send_request_post()
         parse_html(html, insert_db)
         time.sleep(2)
 
@@ -81,5 +81,4 @@ def do_scraping():
     query_from_datelist(date_list, db.insert_db, scraper)
     db.close_db()
 
-
-do_scraping()
+# do_scraping()

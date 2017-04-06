@@ -55,7 +55,10 @@ class Scraping(object):
         if _start > _end:
             return gen_list
         if _start == _end:
-            return gen_list.append((_start.strftime(self.iso_format), _end.strftime(self.iso_format)))
+            k = _start.strftime(self.iso_format)
+            v = _end.strftime(self.iso_format)
+            gen_list.append((k, v))
+            return gen_list
 
         tomorrow = _start + deltadays  # 获取差额日期，明天
         while tomorrow <> _end:
@@ -79,7 +82,7 @@ class Scraping(object):
         return title_list
 
     # post发送请求
-    def send_request(self):
+    def send_request_post(self):
         session = requests.Session()
         response = session.post(self.url, self.form_data, headers=self.headers)
         html = BeautifulSoup(response.text, "html5lib")
@@ -92,7 +95,7 @@ class Scraping(object):
     def query_from_datelist(self, datelist, post_para, parse_html, insert_db_name_sql, insert_db):
         for date in datelist:
             self.make_post_para(post_para)
-            html = self.send_request()
+            html = self.send_request_post()
             # 解析出 行数据
             parse_html(html, insert_db_name_sql, insert_db)
             time.sleep(3)

@@ -18,8 +18,7 @@ post_data = {'startDate': '', 'endDate': '',
 
 singleDay = [('2017-03-01', '2017-03-01')]
 
-date_list = [('2006-01-01', '2006-12-31'), ('2007-01-01', '2007-12-31'), ('2008-01-01', '2008-12-31'),
-             ('2009-01-01', '2009-12-31'), ('2010-01-01', '2010-12-31'), ('2011-01-01', '2011-12-31'),
+date_list = [('2010-10-01', '2010-12-31'), ('2011-01-01', '2011-12-31'),
              ('2012-01-01', '2012-12-31'), ('2013-01-01', '2013-12-31'), ('2014-01-01', '2014-12-31'),
              ('2015-01-01', '2015-12-31'), ('2016-01-01', '2016-12-31'), ('2017-01-01', '2017-03-31')]
 
@@ -48,10 +47,23 @@ def create_table_sql():
 def insert_db_sql(row):
     # 引号坑死人
     sql = "insert into %s (date,`期限品种`,`掉期点(Pips)`,`掉期点涨跌(Pips)`,`掉期点数据源`, `全价汇率`, `全价汇率涨跌`,`远端起息日`) " \
-          "VALUES ('%s', '%s', %s, %s, '%s', %s, %s, '%s')" \
+          "VALUES ('%s', '%s', %s, %s, '%s', %s, %s, %s)" \
           % (
-              TABLE_NAME, row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7]
+              TABLE_NAME, row[0], row[1], row[2] or "NULL", row[3] or "NULL", row[4] or "NULL", row[5] or "NULL",
+              row[6] or "NULL", str(row[7]) or "NULL"
           )
+    return sql
+
+
+def insert_db_value(row):
+    return (row[0], row[1], row[2] or None, row[3] or None, row[4] or None, row[5] or None,
+            row[6] or None, row[7] or None)
+
+
+def insert_db_sql_values():
+    # 引号坑死人
+    sql = "insert into FxSwapsCurve (date,`期限品种`,`掉期点(Pips)`,`掉期点涨跌(Pips)`,`掉期点数据源`, `全价汇率`, `全价汇率涨跌`,`远端起息日`) " \
+          "VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
     return sql
 
 
@@ -63,9 +75,10 @@ def parse_html(html, save_row, insert_into):
             row = []
             for td in tr.find_all('td'):
                 if td.string:
-                    row.append(td.string.encode('utf-8').replace("\xc2\xa0", "").strip())
+                    str_ = td.string.encode('utf-8').replace("\xc2\xa0", "").strip()
+                    row.append(str_ if str_ != '---' else None)
             if len(row) == 8:
-                insert_into(save_row(row))
+                insert_into(save_row(), insert_db_value(row))
             else:
                 print "wrong row size: " + " ".join(row)
     except MySQLdb.Error, e:
@@ -81,7 +94,9 @@ def do_scraping(dates_list):
     db_name = DbManager()
     db_name.create_db(DB_NAME)
 
-    scrap_data(dates_list, db_name, scraper)
+    for date in dates_list:
+        month_list = scraper.gen_month_list(date[0], date[1])
+        scrap_data(month_list, db_name, scraper)
 
     db_name.close_db()
 
@@ -92,9 +107,9 @@ def scrap_data(dates_list, db, scraper):
     db.create_table(create_table_sql())
     for date in dates_list:
         scraper.make_post_para({'startDate': date[0], 'endDate': date[1]})
-        html = scraper.send_request()
-        parse_html(html, insert_db_sql, db.insert_db)
+        html = scraper.send_request_post()
+        parse_html(html, insert_db_sql_values, db.insert_db_values)
         time.sleep(2)
 
 
-do_scraping(singleDay)
+# do_scraping(date_list)

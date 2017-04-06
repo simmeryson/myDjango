@@ -67,8 +67,9 @@ def insert_db(cursor, conn, row):
     sql = "insert into %s (date, curve_name, price_type,1M,3M,6M,9M,1Y,2Y,3Y,4Y,5Y,7Y,10Y) " \
           "VALUES ('%s', '%s', '%s', %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)" \
           % (
-          TABLE_NAME, row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10], row[11],
-          row[12], row[13])
+              TABLE_NAME, row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10],
+              row[11],
+              row[12], row[13])
     # print sql
     cursor.execute(sql)
     conn.commit()
@@ -129,6 +130,5 @@ def connect_db():
         cursor.close()
         conn.close()
 
-
 # 从日期列表中获取数据
-connect_db()
+# connect_db()
