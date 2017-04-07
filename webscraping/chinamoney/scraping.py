@@ -14,7 +14,9 @@ class Scraping(object):
 
     iso_format = '%Y-%m-%d'  # 设置输出格式
 
-    def __init__(self, url, form_data):
+    def __init__(self, url=None, form_data=None):
+        if form_data is None:
+            form_data = {}
         self.url = url
         self.form_data = form_data
 
@@ -24,7 +26,7 @@ class Scraping(object):
         return today.strftime(self.iso_format)
 
     # 按天间隔生成日期列表
-    def gen_day_list(self, start, end):
+    def gen_day_tuple(self, start, end):
         _start = datetime.datetime.strptime(start + "", self.iso_format)
         _end = datetime.datetime.strptime(end + "", self.iso_format)
         deltadays = datetime.timedelta(days=1)  # 确定日期差额，如前天 days=2,最多取到2
@@ -44,6 +46,30 @@ class Scraping(object):
             tomorrow += deltadays
         s = tomorrow.strftime(self.iso_format)
         gen_list.append((s, s))
+        return gen_list
+
+    # 按天间隔生成日期列表
+    def gen_day_list(self, start, end):
+        _start = datetime.datetime.strptime(start + "", self.iso_format)
+        _end = datetime.datetime.strptime(end + "", self.iso_format)
+        deltadays = datetime.timedelta(days=1)  # 确定日期差额，如前天 days=2,最多取到2
+        gen_list = []
+        if _start > _end:
+            return gen_list
+        if _start == _end:
+            k = _start.strftime(self.iso_format)
+            gen_list.append(k)
+            return gen_list
+        s = _start.strftime(self.iso_format)
+        gen_list.append((s, s))
+        tomorrow = _start + deltadays  # 获取差额日期，明天
+        while tomorrow <> _end:
+            print tomorrow.month
+            s = tomorrow.strftime(self.iso_format)
+            gen_list.append(s)
+            tomorrow += deltadays
+        s = tomorrow.strftime(self.iso_format)
+        gen_list.append(s)
         return gen_list
 
     # 生成月列表
@@ -85,6 +111,12 @@ class Scraping(object):
     def send_request_post(self):
         session = requests.Session()
         response = session.post(self.url, self.form_data, headers=self.headers)
+        html = BeautifulSoup(response.text, "html5lib")
+        return html
+
+    # get发送请求
+    def send_request_get(self, payload):
+        response = requests.get(self.url, params=payload, headers=self.headers)
         html = BeautifulSoup(response.text, "html5lib")
         return html
 
