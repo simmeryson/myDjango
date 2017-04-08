@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-# 保存 买断式回购日报.按日查询
+# 保存 债券借贷日报.按日查询
 import re
 from HTMLParser import HTMLParseError
 
@@ -11,11 +11,11 @@ from webscraping.chinamoney.scraping import Scraping
 from webscraping.db_manage import DbManager
 
 DB_NAME = 'chinamoney'
-TABLE_NAME = 'BuyoutRepoDaily'
+TABLE_NAME = 'BondDebitAndCreditDaily'
 
-url = "http://www.chinamoney.com.cn/fe-c/BuyoutRepoDailySearchAction.do"
+url = "http://www.chinamoney.com.cn/fe-c/bondDebitAndCreditDailyAction.do"
 
-post_para = {'searchDate': ''
+post_para = {'searchDate': '', 'langCode': 'ZH'
              }
 
 singleDay = [('2017-03-07', '2017-03-07')]
@@ -29,15 +29,15 @@ def create_table_sql():
           "(id int(11) NOT NULL AUTO_INCREMENT," \
           "date DATE NOT NULL , " \
           "`品种` VARCHAR (30) NOT NULL ," \
-          "`开盘利率` FLOAT ," \
-          "`收盘利率` FLOAT ," \
-          "`最高利率` FLOAT ," \
-          "`最低利率` FLOAT ," \
-          "`加权利率` FLOAT ," \
+          "`开盘费率` FLOAT ," \
+          "`收盘费率` FLOAT ," \
+          "`最高费率` FLOAT ," \
+          "`最低费率` FLOAT ," \
+          "`加权费率` FLOAT ," \
           "`升降(基点)` FLOAT ," \
           "`成交笔数(笔)` INT (10)," \
           "`成交量(亿元)` FLOAT ," \
-          "`增减(亿元)` FLOAT ," \
+          "`增费(亿元)` FLOAT ," \
           "PRIMARY KEY(id)" \
           ")" \
           "ENGINE=InnoDB " \
@@ -54,8 +54,8 @@ def insert_db_value(row):
 
 def insert_db_sql_values():
     # 引号坑死人.字段内不能加特殊符号 比如%
-    sql = "insert into BuyoutRepoDaily (date,`品种`,`开盘利率`,`收盘利率`,`最高利率`,`最低利率`,`加权利率`, `升降(基点)`," \
-          "`成交笔数(笔)`,`成交量(亿元)`,`增减(亿元)`)" \
+    sql = "insert into BondDebitAndCreditDaily (date,`品种`,`开盘费率`,`收盘费率`,`最高费率`,`最低费率`,`加权费率`, `升降(基点)`," \
+          "`成交笔数(笔)`,`成交量(亿元)`,`增费(亿元)`)" \
           " VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
     return sql
 
@@ -127,5 +127,6 @@ def scraping_today():
     scrap_data(day_list, db_name, scraper)
 
     db_name.close_db()
+
 
 scraping_today()

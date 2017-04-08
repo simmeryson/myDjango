@@ -64,7 +64,6 @@ class Scraping(object):
         gen_list.append((s, s))
         tomorrow = _start + deltadays  # 获取差额日期，明天
         while tomorrow <> _end:
-            print tomorrow.month
             s = tomorrow.strftime(self.iso_format)
             gen_list.append(s)
             tomorrow += deltadays
