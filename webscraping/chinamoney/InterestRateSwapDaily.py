@@ -1,9 +1,10 @@
 # -*- coding:utf-8 -*-
 # 保存 利率互换日报.按日查询
 import re
+import sys
+sys.path.append('../..')
 
 import MySQLdb
-import bs4
 import time
 
 from webscraping.chinamoney.scraping import Scraping

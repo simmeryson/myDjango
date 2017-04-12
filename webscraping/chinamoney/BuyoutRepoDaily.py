@@ -1,10 +1,11 @@
 # -*- coding:utf-8 -*-
 # 保存 买断式回购日报.按日查询
-import re
+import sys
+sys.path.append('../..')
+
 from HTMLParser import HTMLParseError
 
 import MySQLdb
-import bs4
 import time
 
 from webscraping.chinamoney.scraping import Scraping

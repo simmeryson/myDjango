@@ -1,9 +1,9 @@
 # -*- coding:utf-8 -*-
 # 保存 货币市场基准利率市场日报.按日查询
-import re
+import sys
+sys.path.append('../..')
 
 import MySQLdb
-import bs4
 import time
 
 from webscraping.chinamoney.scraping import Scraping
@@ -107,7 +107,7 @@ def scrap_data(dates_list, db, scraper):
         time.sleep(2)
 
 
-do_scraping(date_list)
+# do_scraping(date_list)
 
 
 # 抓取当天数据
@@ -125,4 +125,4 @@ def scraping_today():
 
     db_name.close_db()
 
-# scraping_today()
+scraping_today()

@@ -1,6 +1,8 @@
 # -*- coding:utf-8 -*-
 # 保存 债券借贷日报.按日查询
-import re
+import sys
+sys.path.append('../..')
+
 from HTMLParser import HTMLParseError
 
 import MySQLdb

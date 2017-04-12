@@ -1,5 +1,8 @@
 # -*- coding:utf-8 -*-
 # 保存 利率互换日报.按日查询
+import sys
+sys.path.append('../..')
+
 import re
 from HTMLParser import HTMLParseError
 
@@ -7,10 +10,8 @@ import MySQLdb
 import bs4
 import time
 
-from webscraping.chinamoney.scraping import Scraping
+from scraping import Scraping
 from webscraping.db_manage import DbManager
-
-import sys
 
 reload(sys)
 sys.setdefaultencoding('utf8')
@@ -149,5 +150,6 @@ def scraping_today():
     scrap_data(day_list, db_name, scraper)
 
     db_name.close_db()
+
 
 scraping_today()

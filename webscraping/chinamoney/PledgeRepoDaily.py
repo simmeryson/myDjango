@@ -1,9 +1,9 @@
 # -*- coding:utf-8 -*-
 # 保存 质押式回购日报.按日查询
-import re
+import sys
+sys.path.append('../..')
 
 import MySQLdb
-import bs4
 import time
 
 from webscraping.chinamoney.scraping import Scraping
