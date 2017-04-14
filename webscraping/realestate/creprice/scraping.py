@@ -9,7 +9,9 @@ import datetime
 class Scraping(object):
     headers = {
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8"
+        "Accept": "*/*",
+        "Cookie": "cityredata=cb50dfaede3c93fc3a6ed905bdbbd24b; cityurl=11b7a3958e53db0; UM_distinctid=15b6267bfcd7e0-0db0b0a89dbf5-396e7807-fa000-15b6267bfcf41e; city=xa; __asc=b4c66e6515b62b426dec7238aa6; __auc=ba09ef2115b62685ed0cd954fcf; _ga=GA1.2.1704712836.1492004618; CNZZDATA1253686598=968704982-1491999749-%7C1492005152",
+        "Referer": "http://www.creprice.cn/market/xa/forsale/ALL/11.html"
     }
 
     iso_format = '%Y-%m-%d'  # 设置输出格式
@@ -98,14 +100,6 @@ class Scraping(object):
         gen_list.append((s, t))
         return gen_list
 
-    # 解析出表头
-    @staticmethod
-    def parse_title(html):
-        title_list = []
-        for title in html.find_all("td", {"class": "dreport-title"}):
-            title_list.append(title.get_text().encode("utf8"))
-        return title_list
-
     # post发送请求
     def send_request_post(self):
         session = requests.Session()
@@ -122,17 +116,3 @@ class Scraping(object):
     def make_post_para(self, paras):
         for (k, v) in paras.iteritems():
             self.form_data[k] = v
-
-    def query_from_datelist(self, datelist, post_para, parse_html, insert_db_name_sql, insert_db):
-        for date in datelist:
-            self.make_post_para(post_para)
-            html = self.send_request_post()
-            # 解析出 行数据
-            parse_html(html, insert_db_name_sql, insert_db)
-            time.sleep(3)
-
-    # 查询今天的数据
-    def query_today(self, parse_html, save_row):
-        today = self.get_today_date() + ""
-        single_day = [(today, today)]
-        self.query_from_datelist(single_day, parse_html, save_row)
