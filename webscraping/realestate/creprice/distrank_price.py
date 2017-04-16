@@ -27,13 +27,13 @@ city_list = [('xa', 'XianHousePrice'), ('bj', 'BeijingHousePrice'), ('sh', 'Shan
 
 
 def create_crepriceSecondHandDistRank_table_sql():
-    sql = "CREATE TABLE IF NOT EXISTS crepriceSecondHandMonthPrice" \
+    sql = "CREATE TABLE IF NOT EXISTS crepriceSecondHandDistRank " \
           "(id int(11) NOT NULL AUTO_INCREMENT," \
           "date VARCHAR (20) NOT NULL , " \
           "DistrictName VARCHAR (20)," \
           "AveragePrice VARCHAR (20)," \
-          "YoY VARCHAR (20)," \
           "MoM VARCHAR (20)," \
+          "YoY VARCHAR (20)," \
           "PRIMARY KEY(id)," \
           "Unique Key(date)" \
           ")" \
@@ -52,26 +52,49 @@ def insert_crepriceSecondHandDistRank_value(row):
 
 def insert_crepriceSecondHandDistRank_sql_values():
     # 引号坑死人.字段内不能加特殊符号 比如%
-    sql = "insert into crepriceSecondHandMonthPrice (" \
+    sql = "insert into crepriceSecondHandDistRank (" \
           "date, " \
           "DistrictName, " \
           "AveragePrice, " \
-          "YoY, " \
-          "MoM)" \
+          "MoM, " \
+          "YoY)" \
           " VALUES (%s, %s, %s, %s, %s)"
     return sql
 
 
 def parse_html(html, insert_db_values):
-
+    try:
+        date_h2 = html.find('h2', class_='ranktit')
+        date = date_h2.string.encode('utf-8').strip()
+        for tr in date_h2.parent.find_next_sibling('div').find('tbody', attrs={'id': 'order_f'}).find_all('tr'):
+            row_ = []
+            for td in tr.find_all('td'):
+                string = td.string.encode('utf-8').strip()
+                row_.append(string if string != '--' else None)
+            row = [date]
+            row.extend(row_[1:])
+            if len(row) == 5:
+                insert_db_values(insert_crepriceSecondHandDistRank_sql_values(),
+                                 insert_crepriceSecondHandDistRank_value(row))
+            else:
+                print "wrong row size: " + " ".join(row)
+    except MySQLdb.Error, e:
+        print "Mysql Error %d: %s  on Table:%s" % (e.args[0], e.args[1], 'crepriceSecondHandDistRank')
+    except HTMLParseError, e:
+        print "HTMLParseError %d: %s! on Table:%s" % (e.args[0], e.args[1], 'crepriceSecondHandDistRank')
+    finally:
+        print "%s 抓取完成" % 'crepriceSecondHandDistRank'
 
 
 def scrap_data(db, scraper, city):
-    db.drop_table('crepriceSecondHandMonthPrice')
+    # db.drop_table('crepriceSecondHandDistRank')
     db.create_table(create_crepriceSecondHandDistRank_table_sql())
     scraper.url = url % city
     html = scraper.send_request_get({})
     parse_html(html, db.insert_db_values)
+
+    time.sleep(2)
+
 
 # 抓取当天数据
 def scraping_today():

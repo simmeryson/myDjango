@@ -286,7 +286,6 @@ def scrap_data(db, scraper, city):
     post_para['dtype'] = 'line'
 
     # 月均价
-    # db.drop_table('crepriceSecondHandMonthPrice')
     db.create_table(create_crepriceSecondHandMonthPrice_table_sql())
     price_html = scraper.send_request_get(post_para)
     parse_price_html(price_html, insert_crepriceSecondHandMonthPrice_sql_values, db.insert_db_values)
@@ -295,7 +294,6 @@ def scrap_data(db, scraper, city):
     mounth_date = db.query('select date from crepriceSecondHandMonthPrice')[-1][0]
 
     # 月价格分布
-    # db.drop_table('crepriceSecondHandPriceHistogram')
     db.create_table(create_crepriceSecondHandPriceHistogram_table_sql())
     post_para['dtype'] = 'bar'
     histogram_html = scraper.send_request_get(post_para)
@@ -304,7 +302,6 @@ def scrap_data(db, scraper, city):
     # 房价总体数据
     today = scraper.get_today_date()
     scraper.url = page_url
-    # db.drop_table('crepriceSecondHandMacroPrice')
     db.create_table(create_crepriceSecondHandMacroPrice_table_sql())
     macro_html = scraper.send_request_get({})
     parse_macro_html(macro_html,
@@ -313,9 +310,14 @@ def scrap_data(db, scraper, city):
                      today)
     scraper.url = url
 
-
-    
     time.sleep(2)
+
+
+#
+def drop_tables(db):
+    db.drop_table('crepriceSecondHandMonthPrice')
+    db.drop_table('crepriceSecondHandPriceHistogram')
+    db.drop_table('crepriceSecondHandMacroPrice')
 
 
 # 抓取当天数据
