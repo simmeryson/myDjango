@@ -27,11 +27,19 @@ class DbManager(object):
             self.conn.close()
 
     def create_db(self, db_name):
-        self.cursor.execute("CREATE DATABASE IF NOT EXISTS %s" % db_name)
+        self.cursor.execute("CREATE DATABASE IF NOT EXISTS %s"
+                            # " CHARACTER SET 'utf8' COLLATE 'utf8_general_ci'"
+                            % db_name)
         self.conn.select_db(db_name)
+        self.cursor.execute("set character_set_server='utf8'")
+        self.cursor.execute("set character_set_database='utf8'")
         self.cursor.execute("SELECT VERSION()")
         data = self.cursor.fetchone()
         print "Database version : %s " % data
+
+    def drop_db(self, db_name):
+        drop_sql = "DROP DATABASE IF EXISTS `%s`" % db_name
+        self.cursor.execute(drop_sql)
 
     def create_table(self, sql):
         self.cursor.execute(sql)
