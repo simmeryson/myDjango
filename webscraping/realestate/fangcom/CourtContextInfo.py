@@ -3,6 +3,7 @@
 import re
 import sys
 from HTMLParser import HTMLParseError
+from threading import Thread
 
 import MySQLdb
 import bs4
@@ -16,7 +17,7 @@ table_name = 'fangcomCourtContextInfo'
 db_name = 'XianHousePrice'
 
 
-class CourtContextInfo(object):
+class CourtContextInfo(Thread):
     rex = re.compile(ur'周边信息')
     commuting = re.compile(ur'交通状况')
     rex_list = {
@@ -30,6 +31,14 @@ class CourtContextInfo(object):
         r'其他': None,
         r'小区内部配套': None,
     }
+
+    def __init__(self, html, name_id):
+        super(CourtContextInfo, self).__init__()
+        self.html = html
+        self.name_id = name_id
+
+    def run(self):
+        self.parse_html(self.html, self.name_id)
 
     def create_table(self):
         sql = "CREATE TABLE IF NOT EXISTS fangcomCourtContextInfo" \
@@ -80,6 +89,7 @@ class CourtContextInfo(object):
                 )
 
     def parse_html(self, html, name_id):
+        global db
         try:
             db = DbManager()
             db.select_db(db_name)
@@ -92,9 +102,9 @@ class CourtContextInfo(object):
                 pare = pare if len(pare) == 2 else dt.string.encode('utf-8').strip().split(':')
                 self.rex_list[pare[0]] = pare[1]
 
-            row = [self.rex_list[r'幼儿园`'], self.rex_list[r'中小学'], self.rex_list[r'大学'],
-                   self.rex_list[r'商场'], self.rex_list[r'医院'], self.rex_list[r'邮局'],
-                   self.rex_list[r'银行'], self.rex_list[r'其他'], self.rex_list[r'小区内部配套']]
+            row = [self.rex_list[r'幼儿园'], self.rex_list[r'中小学'], self.rex_list[r'大学'], self.rex_list[r'商场'],
+                   self.rex_list[r'医院'], self.rex_list[r'邮局'], self.rex_list[r'银行'], self.rex_list[r'其他'],
+                   self.rex_list[r'小区内部配套']]
 
             commut_div = html.find(string=self.commuting)
             jiaotong = commut_div.parent.parent.find_next_sibling('div').dl.dt if commut_div else []
@@ -114,3 +124,4 @@ class CourtContextInfo(object):
             print "HTMLParseError %d: %s! on Table:%s" % (e.args[0], e.args[1], table_name)
         finally:
             print "%s 抓取完成" % table_name
+            db.close_db()

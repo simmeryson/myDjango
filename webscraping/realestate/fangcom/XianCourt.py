@@ -86,6 +86,7 @@ def parse_name_list(html, insert_db_values):
         print "%s 抓取完成" % 'fangcomSecondHandCourtName'
 
 
+# 递归抓取所有分页
 def scrap_data(db, scraper, city):
     html = scraper.send_request_get({})
     next_page = parse_name_list(html, db.insert_db_values)
@@ -142,9 +143,9 @@ def insert_fangcomSecondHandCourtDetail_value(row):
 
 # 抓取当天数据
 def parse_basic_info(html, court_id):
-    CourtBasicInfo().parse_html(html, court_id)
-    CourtFacility().parse_html(html, court_id)
-    CourtContextInfo().parse_html(html, court_id)
+    CourtBasicInfo(html, court_id).start()
+    CourtFacility(html, court_id).start()
+    CourtContextInfo(html, court_id).start()
 
 
 def parse_detail_html(html, today, court_id, db):
@@ -180,7 +181,8 @@ def scrap_detail(db):
         html = scraper.send_request_get()
         today = str(scraper.get_today_date())
         parse_detail_html(html, today, court_id, db)
-    time.sleep(0.5)
+
+        time.sleep(0.5)
 
 
 def scraping_today():

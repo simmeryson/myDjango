@@ -3,6 +3,7 @@
 import re
 import sys
 from HTMLParser import HTMLParseError
+from threading import Thread
 
 import MySQLdb
 import bs4
@@ -16,7 +17,7 @@ table_name = 'fangcomCourtBasicInfo'
 db_name = 'XianHousePrice'
 
 
-class CourtBasicInfo(object):
+class CourtBasicInfo(Thread):
     rex = re.compile(ur'基本信息')
 
     rex_list = [ur'小区地址',
@@ -38,6 +39,14 @@ class CourtBasicInfo(object):
                 ur'物 业 费',
                 ur'附加信息',
                 ur'物业办公地点', ]
+
+    def __init__(self, html, name_id):
+        super(CourtBasicInfo, self).__init__()
+        self.html = html
+        self.name_id = name_id
+
+    def run(self):
+        self.parse_html(self.html, self.name_id)
 
     def create_table(self):
         sql = "CREATE TABLE IF NOT EXISTS fangcomCourtBasicInfo" \
@@ -108,6 +117,7 @@ class CourtBasicInfo(object):
                 )
 
     def parse_html(self, html, name_id):
+        global db
         try:
             db = DbManager()
             db.select_db(db_name)
@@ -131,3 +141,4 @@ class CourtBasicInfo(object):
             print "HTMLParseError %d: %s! on Table:%s" % (e.args[0], e.args[1], table_name)
         finally:
             print "%s 抓取完成" % table_name
+            db.close_db()
