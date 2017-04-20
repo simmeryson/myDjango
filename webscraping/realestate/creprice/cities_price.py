@@ -6,6 +6,7 @@ import sys
 import bs4
 
 sys.path.append('../../..')
+sys.path.append('../..')
 
 from HTMLParser import HTMLParseError
 

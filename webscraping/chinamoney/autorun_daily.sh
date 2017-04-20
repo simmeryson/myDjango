@@ -17,4 +17,6 @@ python CreditLendDaily.py
 python InterestRateSwapDaily.py
 python MoneyBenchmarkMarketDaily.py
 python PledgeRepoDaily.py
+python ../realestate/creprice/cities_price.py
+python ../realestate/creprice/distrank_price.py
 fi
