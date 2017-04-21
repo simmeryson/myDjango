@@ -35,6 +35,9 @@ city_list = [('xa', 'XianHousePrice'),
 
 table_name = 'fangcomCourtTradeRecord'
 
+num_re = re.compile(ur'^-?\d+\.?\d*')
+exclude_re = re.compile(ur'-')
+
 
 #
 def drop_tables(db):
@@ -46,10 +49,13 @@ def drop_tables(db):
 def create_fangcomCourtTradeRecord_table_sql():
     sql = "CREATE TABLE IF NOT EXISTS fangcomCourtTradeRecord" \
           "(id int(11) NOT NULL AUTO_INCREMENT," \
-          " DATE , " \
-          "CurPrice INT (10), " \
-          "MoM VARCHAR (20), " \
-          "YoY VARCHAR (20), " \
+          "RoomNum VARCHAR (20), " \
+          "FloorInfo VARCHAR (20), " \
+          "Direction VARCHAR (10), " \
+          "Area FLOAT , " \
+          "TradeDate DATE , " \
+          "TradePrice INT , " \
+          "PricePerMeter INT , " \
           "nameId INT NOT NULL , " \
           "FOREIGN Key(nameId) REFERENCES  fangcomSecondHandCourtName(id) on delete cascade on update cascade, " \
           "PRIMARY KEY(id)" \
@@ -63,34 +69,52 @@ def create_fangcomCourtTradeRecord_table_sql():
 def insert_fangcomCourtTradeRecord_sql_values():
     # 引号坑死人.字段内不能加特殊符号 比如%
     sql = "insert into fangcomCourtTradeRecord " \
-          "(date," \
-          "CurPrice," \
-          "MoM," \
-          "YoY," \
+          "(RoomNum , " \
+          "FloorInfo, " \
+          "Direction , " \
+          "Area , " \
+          "TradeDate  , " \
+          "TradePrice , " \
+          "PricePerMeter , " \
           "nameId" \
           ") " \
-          "VALUES (%s, %s, %s, %s, %s)"
+          "VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
     return sql
 
 
 def insert_fangcomCourtTradeRecord_value(row):
     return (row[0], row[1] or None, row[2] or None, row[3] or None,
-            row[4]
+            row[4] or None, row[5] or None, row[6] or None,
+            row[7] or None
             )
 
 
-def parse_trade_html(html, today, court_id, db):
+def parse_trade_html(html, court_id, db):
     try:
-        div = html.find('div', class_='box detaiLtop mt20 clearfix')
-        row = [today]
-        for dl in div.find_all('dl'):
-            row.append(dl.dd.span.string.encode('utf-8').strip())
-        row.append(court_id)
-        if len(row) == 5:
-            db.insert_db_values(insert_fangcomCourtTradeRecord_sql_values(),
-                                insert_fangcomCourtTradeRecord_value(row))
-        else:
-            print "wrong row size: " + " ".join(row)
+        record_list = html.find('div', class_='dealSent sentwrap').find_all('tr')
+        row = []
+        for line in record_list[1:]:
+            roomInfo = line.find('td', class_='firsttd')
+            number = roomInfo.div.find('a', attrs={'target': '_blank'})
+            row.append(number.string.encode('utf-8').strip())
+            for floor in number.parent.parent.find_next_siblings('p'):
+                row.append(floor.string.encode('utf-8').strip())
+            for trading in roomInfo.find_next_siblings('td')[:-1]:
+                string = trading.b.string.encode('utf-8').strip() if trading.b \
+                    else trading.string.encode('utf-8').strip()
+                ex = exclude_re.findall(string, 0)
+                if len(ex) > 0:
+                    row.append(string)
+                else:
+                    b = num_re.findall(string, 0)
+                    row.append(b[0] if len(b) > 0 else '0')
+
+            row.append(court_id)
+            if len(row) == 8:
+                db.insert_db_values(insert_fangcomCourtTradeRecord_sql_values(),
+                                    insert_fangcomCourtTradeRecord_value(row))
+            else:
+                print "wrong row size: " + " ".join(row)
     except MySQLdb.Error, e:
         print "Mysql Error %d: %s  on Table:%s" % (e.args[0], e.args[1], table_name)
     except HTMLParseError, e:
@@ -100,17 +124,16 @@ def parse_trade_html(html, today, court_id, db):
 
 
 def scrap_detail(db):
-    drop_tables(db)
+    # drop_tables(db)
     db.create_table(create_fangcomCourtTradeRecord_table_sql())
-    court_list = db.query('select * from fangcomSecondHandCourtName')
+    court_list = db.query('select id, name, DetailUrl from fangcomSecondHandCourtName')
     for (court_id, court_name, court_url) in court_list:
         print '小区:' + court_name + "  开始获取详情"
-        url = court_url.replace('esf/', 'xiangqing/')
+        url = court_url.replace('esf/', trade_url)
         scraper = Scraping(url)
         scraper.make_header_para({'Referer': court_url})
         html = scraper.send_request_get()
-        today = str(scraper.get_today_date())
-        parse_trade_html(html, today, court_id, db)
+        parse_trade_html(html, court_id, db)
 
         time.sleep(0.5)
 

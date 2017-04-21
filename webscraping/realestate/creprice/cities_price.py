@@ -250,7 +250,7 @@ def parse_macro_html(html, save_row, insert_into, today):
             row.append(v)
 
         # EstateGardenNumber 楼盘小区个数
-        numbs = re.compile(ur'\b-?\d+.?\d*\b')
+        numbs = re.compile(ur'\b-?\d+\.?\d*\b')
         tao = re.compile(ur'万')
         div = html.find('div', class_='tips-sy1 mb5')
         for s in div.contents:

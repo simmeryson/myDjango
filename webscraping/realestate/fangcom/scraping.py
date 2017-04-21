@@ -110,7 +110,7 @@ class Scraping(object):
     # get发送请求
     def send_request_get(self, payload={}):
         response = requests.get(self.url, params=payload, headers=self.headers)
-        response.encoding = response.apparent_encoding
+        response.encoding = response.apparent_encoding  # 网页设定编码格式
         html = BeautifulSoup(response.text, "html5lib")
         return html
 

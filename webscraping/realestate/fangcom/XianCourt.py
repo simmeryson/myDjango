@@ -39,8 +39,12 @@ city_list = [('xa', 'XianHousePrice'),
 def create_fangcomSecondHandCourtName_table_sql():
     sql = "CREATE TABLE IF NOT EXISTS fangcomSecondHandCourtName" \
           "(id int(11) NOT NULL AUTO_INCREMENT," \
-          "name VARCHAR (30), " \
-          "DetailUrl VARCHAR (100), " \
+          "name VARCHAR (30) NOT NULL , " \
+          "DetailUrl VARCHAR (100) NOT NULL , " \
+          "Zone VARCHAR (20) NOT NULL , " \
+          "Address VARCHAR (20), " \
+          "SellNum INT , " \
+          "RentNum INT , " \
           "PRIMARY KEY(id)" \
           ")" \
           "ENGINE=InnoDB " \
@@ -53,13 +57,19 @@ def insert_fangcomSecondHandCourtName_sql_values():
     # 引号坑死人.字段内不能加特殊符号 比如%
     sql = "insert into fangcomSecondHandCourtName " \
           "(name," \
-          "DetailUrl) " \
-          "VALUES (%s, %s)"
+          "DetailUrl," \
+          "Zone," \
+          "Address," \
+          "SellNum," \
+          "RentNum" \
+          ") " \
+          "VALUES (%s, %s, %s, %s, %s, %s)"
     return sql
 
 
 def insert_fangcomSecondHandCourtName_value(row):
-    return (row[0], row[1] or None
+    return (row[0], row[1], row[2], row[3] or None
+            , row[4] or None, row[5] or None
             )
 
 
@@ -68,12 +78,23 @@ def parse_name_list(html, insert_db_values):
     try:
 
         for a in html.find_all('dl', class_='plotListwrap clearfix'):
-            a = a.dd.p.a
-            info_url = a['href'].encode('utf-8').strip()
-            name = a.string.encode('utf-8').strip()
+            ab = a.dd.p.a
+            info_url = ab['href'].encode('utf-8').strip()
+            name = ab.string.encode('utf-8').strip()
             row = [name, info_url]
-            insert_db_values(insert_fangcomSecondHandCourtName_sql_values(),
-                             insert_fangcomSecondHandCourtName_value(row))
+            # 区域 地址
+            for add in a.dd.p.find_next_sibling('p').find_all('a'):
+                row.append(add.string.encode('utf-8').strip())
+
+            # 出售 出租 套数
+            for ab in a.dd.ul.find_all('a'):
+                row.append(ab.string.strip())
+
+            if len(row) == 6:
+                insert_db_values(insert_fangcomSecondHandCourtName_sql_values(),
+                                 insert_fangcomSecondHandCourtName_value(row))
+            else:
+                print "wrong row size: " + " ".join(row)
         div = html.find('div', attrs={'id': 'houselist_B14_01'})
         now_page = div.find('a', class_='pageNow').string.encode('utf-8').strip()
         print 'now_page:' + now_page
@@ -99,7 +120,7 @@ def scrap_data(db, scraper, city):
 
 #
 def drop_tables(db):
-    # db.drop_table('fangcomSecondHandCourtName')
+    db.drop_table('fangcomSecondHandCourtName')
     db.drop_table('fangcomSecondHandCourtDetail')
 
 
@@ -170,9 +191,9 @@ def parse_detail_html(html, today, court_id, db):
 
 
 def scrap_detail(db):
-    drop_tables(db)
+    # drop_tables(db)
     db.create_table(create_fangcomSecondHandCourtDetail_table_sql())
-    court_list = db.query('select * from fangcomSecondHandCourtName')
+    court_list = db.query('select id, name, DetailUrl from fangcomSecondHandCourtName')
     for (court_id, court_name, court_url) in court_list:
         print '小区:' + court_name + "  开始获取详情"
         url = court_url.replace('esf/', 'xiangqing/')

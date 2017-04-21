@@ -59,6 +59,11 @@ class DbManager(object):
         self.cursor.execute(sql, values)
         self.conn.commit()
 
+    def insert_tables_list(self, sql_list):
+        for (sql, value) in sql_list:
+            self.cursor.execute(sql, value)
+        self.conn.commit()
+
     def query(self, sql):
         self.cursor.execute(sql)
         return self.cursor.fetchall()

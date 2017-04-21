@@ -94,7 +94,7 @@ class CourtFacility(Thread):
         try:
             db = DbManager()
             db.select_db(db_name)
-            db.drop_table(table_name)
+            # db.drop_table(table_name)
             db.create_table(self.create_table())
 
             div = html.find(string=self.rex).parent.parent.find_next_sibling('div')
