@@ -58,7 +58,8 @@ def create_fangcomCourtTradeRecord_table_sql():
           "PricePerMeter INT , " \
           "nameId INT NOT NULL , " \
           "FOREIGN Key(nameId) REFERENCES  fangcomSecondHandCourtName(id) on delete cascade on update cascade, " \
-          "PRIMARY KEY(id)" \
+          "PRIMARY KEY(id)," \
+          "UNIQUE KEY (Area, TradeDate, TradePrice, PricePerMeter)" \
           ")" \
           "ENGINE=InnoDB " \
           "AUTO_INCREMENT=1 " \
@@ -92,13 +93,13 @@ def insert_fangcomCourtTradeRecord_value(row):
 def parse_trade_html(html, court_id, db):
     try:
         record_list = html.find('div', class_='dealSent sentwrap').find_all('tr')
-        row = []
         for line in record_list[1:]:
+            row = []
             roomInfo = line.find('td', class_='firsttd')
             number = roomInfo.div.find('a', attrs={'target': '_blank'})
             row.append(number.string.encode('utf-8').strip())
             for floor in number.parent.parent.find_next_siblings('p'):
-                row.append(floor.string.encode('utf-8').strip())
+                row.append(floor.string.encode('utf-8').strip() if floor and floor.string else None)
             for trading in roomInfo.find_next_siblings('td')[:-1]:
                 string = trading.b.string.encode('utf-8').strip() if trading.b \
                     else trading.string.encode('utf-8').strip()
@@ -126,16 +127,29 @@ def parse_trade_html(html, court_id, db):
 def scrap_detail(db):
     # drop_tables(db)
     db.create_table(create_fangcomCourtTradeRecord_table_sql())
-    court_list = db.query('select id, name, DetailUrl from fangcomSecondHandCourtName')
+    court_list = db.query('select id, name, DetailUrl from fangcomSecondHandCourtName ')
     for (court_id, court_name, court_url) in court_list:
         print '小区:' + court_name + "  开始获取详情"
-        url = court_url.replace('esf/', trade_url)
+        url = court_url.replace('esf/', trade_url) if court_url.find('esf') != -1 else court_url + trade_url
+        if url.find('house-xm') != -1:
+            continue
         scraper = Scraping(url)
-        scraper.make_header_para({'Referer': court_url})
-        html = scraper.send_request_get()
-        parse_trade_html(html, court_id, db)
+        try:
+            send_request(court_id, court_url, db, url, scraper)
+        except:
+            print "error ->> id:" + str(court_id) + "  " + str(court_url)
 
-        time.sleep(0.5)
+
+def send_request(court_id, court_url, db, url, scraper):
+    scraper.url = url
+    scraper.make_header_para({'Referer': court_url})
+    html = scraper.send_request_get()
+    parse_trade_html(html, court_id, db)
+    time.sleep(0.5)
+    next_page = html.find('a', id='ctl00_hlk_next')
+    if next_page:
+        next_url = next_page['href']
+        send_request(court_id, url, db, next_url, scraper)
 
 
 def scraping_today():
