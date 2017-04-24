@@ -63,6 +63,7 @@ def create_fangcomCourtSellingInfo_table_sql():
           "Direction VARCHAR (10), " \
           "Decor VARCHAR (10), " \
           "HouseHistory VARCHAR (10), " \
+          "School VARCHAR (30), " \
           "Telephone VARCHAR (30), " \
           "`满五唯一` TINYINT (1), " \
           "`满二` TINYINT (1), " \
@@ -91,6 +92,7 @@ def insert_fangcomCourtSellingInfo_sql_values():
           "Direction , " \
           "Decor , " \
           "HouseHistory , " \
+          "School , " \
           "Telephone , " \
           "`满五唯一` TINYINT (1), " \
           "`满二` TINYINT (1), " \
@@ -98,7 +100,7 @@ def insert_fangcomCourtSellingInfo_sql_values():
           "`业主发布` TINYINT (1)," \
           "nameId ," \
           ") " \
-          "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,%s)"
+          "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,%s,%s)"
     return sql
 
 
@@ -107,7 +109,7 @@ def insert_fangcomCourtSellingInfo_value(row):
             row[4] or None, row[5] or None, row[6] or None,
             row[7] or None, row[8] or None, row[9] or None,
             row[10] or None, row[11] or None, row[12] or None,
-            row[13] or None, row[14]
+            row[13] or None, row[15] or None, row[16]
             )
 
 
@@ -126,14 +128,16 @@ def parse_trade_html(html, court_id, db, scraper):
             publish = date_rx.findall(spans[-1].string.encode('utf-8').strip())
             row.append(publish[0] if len(publish) > 0 else None)
 
+            # 具体信息
+            html_detail.find('div', class_='inforTxt').dl
+
             # 标签
             for span in spans[:-2]:
                 for rx in re_list:
-                    if len(rx.findall(span.string.encode('utf-8').strip())) > 0:
-                        row.append(1)
+                    row.append(1 if len(rx.findall(span.string.encode('utf-8').strip())) > 0 else 0)
 
             row.append(court_id)
-            if len(row) == 8:
+            if len(row) == 17:
                 db.insert_db_values(insert_fangcomCourtSellingInfo_sql_values(),
                                     insert_fangcomCourtSellingInfo_value(row))
             else:
