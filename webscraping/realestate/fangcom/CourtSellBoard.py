@@ -35,14 +35,20 @@ city_list = [('xa', 'XianHousePrice'),
 table_name = 'fangcomCourtSellingOnBoard'
 
 num_re = re.compile(ur'\w*-?\d+\.?\d*')
-date_rx = re.compile(ur'\d{4}/\d+/\d+')
+date_rx = re.compile(ur'\d{4}[/-]?\d+[/-]?\d+')
+time_tx = re.compile(ur'\w*前更新')
 
 huxing_rx = re.compile(ur'^户型\w*')
-mianji_rx = re.compile(ur'^建筑面积\w*')
+shiting_rx = re.compile(ur'\d室\d厅\w*')
+mianji_rx = re.compile(ur'\w*面积\w*')
 louceng_rx = re.compile(ur'^楼层\w*')
 chaoxiang_rx = re.compile(ur'^朝向\w*')
 zhuangxiu_rx = re.compile(ur'^装修\w*')
-niandai_rx = re.compile(ur'^年代\w*')
+niandai_rx = re.compile(ur'\w*年代\w*')
+jiegou_rx = re.compile(ur'\w*结构\w*')
+zhuzhai_rx = re.compile(ur'\w*住宅类别\w*')
+jianzhu_rx = re.compile(ur'\w*建筑类别\w*')
+chanquan_rx = re.compile(ur'\w*产权\w*')
 
 
 #
@@ -63,6 +69,10 @@ def create_fangcomCourtSellingOnBoard_table_sql():
           "FloorInfo VARCHAR (20), " \
           "Direction VARCHAR (10), " \
           "Decor VARCHAR (10), " \
+          "Structure VARCHAR (20), " \
+          "HouseCategory VARCHAR (20), " \
+          "BuildingCategory VARCHAR (20), " \
+          "PropertyRight VARCHAR (20), " \
           "HouseHistory INT , " \
           "SchoolId INT , " \
           "Telephone VARCHAR (30), " \
@@ -91,6 +101,10 @@ def insert_fangcomCourtSellingOnBoard_sql_values():
           "FloorInfo , " \
           "Direction , " \
           "Decor , " \
+          "Structure , " \
+          "HouseCategory , " \
+          "BuildingCategory , " \
+          "PropertyRight , " \
           "HouseHistory , " \
           "SchoolId , " \
           "Telephone , " \
@@ -98,7 +112,7 @@ def insert_fangcomCourtSellingOnBoard_sql_values():
           "TrainNote ," \
           "nameId " \
           ") " \
-          "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+          "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
     return sql
 
 
@@ -107,7 +121,8 @@ def insert_fangcomCourtSellingOnBoard_value(row):
             row[4] or None, row[5] or None, row[6] or None,
             row[7] or None, row[8] or None, row[9] or None,
             row[10] or None, row[11] or None, row[12] or None,
-            row[13]
+            row[13] or None, row[14] or None, row[15] or None,
+            row[16] or None, row[17]
             )
 
 
@@ -155,66 +170,162 @@ def save_line(court_id, db, scraper, p):
                 elif span['class'][0] == 'train':
                     train_note = span.string.encode('utf-8').strip()
                 elif span['class'][0] == 'mr10':
-                    house_num = num_re.findall(span.string.encode('utf-8').strip())
-                    str_ = num_re.findall(house_num)
+                    str_ = num_re.findall(span.string.encode('utf-8').strip())
                     if len(str_) > 0 and not house_num:
                         house_num = str_[0]
 
-            elif not span.get('class'):
+            elif not publish_date and not span.get('class'):
                 publish = date_rx.findall(span.string.encode('utf-8').strip())
-                publish_date = publish[0].replace('/', '-') if len(publish) > 0 else None
+                if len(publish) == 0:
+                    publish = time_tx.findall(span.string.encode('utf-8').strip())
+                    if len(publish) > 0:
+                        publish_date = scraper.get_today_date()
+                else:
+                    publish_date = publish[0].replace('/', '-') if len(publish) > 0 else None
 
         # 具体信息
         school_id = None
+        selling_price = None
         details = html_detail.find('div', class_='inforTxt')
+        for span in details.find_all('span', class_='padl27'):
+            span.extract()
+
         for dt in details.find_all('dt'):
-            if dt.span and dt.span.get('class') and dt.span['class'][0] == 'red20b':
-                row.append(dt.span.string.encode('utf-8').strip())
-            elif dt.get('class') and dt['class'][0] == 'esftjftop':
+            for span in dt.find_all('span'):
+                if span.get('class') and span['class'][0] == 'red20b':
+                    selling_price = span.string.encode('utf-8').strip()
+            if dt.get('class') and dt['class'][0] == 'esftjftop':
                 tag_list.append(dt.span.string.encode('utf-8').strip())
             elif dt.find('div', id='schoolname'):
                 schoolname = dt.find('div', id='schoolname').a.string.encode('utf-8').strip()
                 school_id = query_school_id(schoolname, db)
         # 房屋属性
         type_list = {'RoomType': None, 'Area': None, 'FloorInfo': None,
-                     'Direction': None, 'Decor': None, 'HouseHistory': None}
+                     'Direction': None, 'Decor': None, 'Structure': None,
+                     'HouseCategory': None, 'BuildingCategory': None,
+                     'PropertyRight': None, 'HouseHistory': None}
         for dd in details.find_all('dd'):
-            if len(dd.find_all(string=huxing_rx)) > 0:
-                string = dd.find_all(string=huxing_rx)[0].string.encode('utf-8').strip()
-                type_list['RoomType'] = string.split('：')[1].strip()
+            if len(dd.find_all(string=shiting_rx)) > 0:
+                if len(dd.find_all(string=huxing_rx)) > 0:
+                    string = dd.find_all(string=huxing_rx)[0].string.encode('utf-8').strip().split('：')[1].strip()
+                else:
+                    string = dd.find_all(string=shiting_rx)[0].encode('utf-8').strip()
+                type_list['RoomType'] = string
             elif len(dd.find_all(string=mianji_rx)) > 0:
-                string = dd.find_all(string=mianji_rx)[0].string.encode('utf-8').strip()
-                area = string.split('：')[1].strip()
-                type_list['Area'] = num_re.findall(area)[0]
+                mianji = dd.find_all(string=mianji_rx)[0].parent.span
+                if mianji:
+                    area = num_re.findall(mianji.string.encode('utf-8').strip())[0]
+                else:
+                    string = dd.find_all(string=mianji_rx)[0].string.encode('utf-8').strip()
+                    area = num_re.findall(string)[0]
+                type_list['Area'] = area
             elif len(dd.find_all(string=louceng_rx)) > 0:
+                tag = dd.find_all(string=louceng_rx)
                 string = dd.find_all(string=louceng_rx)[0].string.encode('utf-8').strip()
                 type_list['FloorInfo'] = string.split('：')[1].strip()
             elif len(dd.find_all(string=chaoxiang_rx)) > 0:
-                string = dd.find_all(string=chaoxiang_rx)[0].string.encode('utf-8').strip()
-                type_list['Direction'] = string.split('：')[1].strip()
+                span = dd.find_all(string=chaoxiang_rx)[0].parent
+                if not span.span:
+                    string = dd.find_all(string=chaoxiang_rx)[0].string.encode('utf-8').strip().split('：')[
+                        1].strip()
+                else:
+                    string = span.string.encode('utf-8').strip()
+                type_list['Direction'] = string
             elif len(dd.find_all(string=zhuangxiu_rx)) > 0:
                 string = dd.find_all(string=zhuangxiu_rx)[0].string.encode('utf-8').strip()
                 type_list['Decor'] = string.split('：')[1].strip()
+            elif len(dd.find_all(string=zhuzhai_rx)) > 0:
+                string = dd.find_all(string=zhuzhai_rx)[0].string.encode('utf-8').strip()
+                type_list['HouseCategory'] = string.split('：')[1].strip()
+            elif len(dd.find_all(string=jianzhu_rx)) > 0:
+                string = dd.find_all(string=jianzhu_rx)[0].string.encode('utf-8').strip()
+                type_list['BuildingCategory'] = string.split('：')[1].strip()
+            elif len(dd.find_all(string=chanquan_rx)) > 0:
+                string = dd.find_all(string=chanquan_rx)[0].string.encode('utf-8').strip()
+                type_list['PropertyRight'] = string.split('：')[1].strip()
             elif len(dd.find_all(string=niandai_rx)) > 0:
-                string = dd.find_all(string=niandai_rx)[0].string.encode('utf-8').strip()
-                type_list['HouseHistory'] = num_re.findall(string.split('：')[1].strip())[0]
+                if dd.span:
+                    if dd.span.string:
+                        string = num_re.findall(dd.span.string.encode('utf-8').strip())
+                    else:
+                        for content in dd.contents:
+                            if content == bs4.element.NavigableString and len(content.strip()) > 0:
+                                string = content.encode('utf-8').strip()
+                else:
+                    _string = dd.find_all(string=niandai_rx)[0].string.encode('utf-8').strip()
+                    string = num_re.findall(_string)[0]
+                type_list['HouseHistory'] = string
+            elif len(dd.find_all(string=jiegou_rx)) > 0:
+                string = dd.find_all(string=zhuangxiu_rx)[0].string.encode('utf-8').strip()
+                type_list['Structure'] = string.split('：')[1].strip()
+            else:
+                if dd.span:
+                    if len(niandai_rx.findall(dd.span.string if dd.span.string else dd.span.text)) > 0:
+                        for content in dd.contents:
+                            if type(content) == bs4.element.NavigableString:
+                                type_list['HouseHistory'] = num_re.findall(content)[0] if len(
+                                    num_re.findall(content)) > 0 else None
+                    elif len(zhuangxiu_rx.findall(dd.span.string if dd.span.string else dd.span.text)) > 0:
+                        for content in dd.contents:
+                            if type(content) == bs4.element.NavigableString and len(content.strip()) > 0:
+                                type_list['Decor'] = content.encode('utf-8').strip()
+                    elif len(chaoxiang_rx.findall(dd.span.string if dd.span.string else dd.span.text)) > 0:
+                        for content in dd.contents:
+                            if type(content) == bs4.element.NavigableString and len(content.strip()) > 0:
+                                type_list['Direction'] = content.encode('utf-8').strip()
+                    elif len(louceng_rx.findall(dd.span.string if dd.span.string else dd.span.text)) > 0:
+                        for content in dd.contents:
+                            if type(content) == bs4.element.NavigableString and len(content.strip()) > 0:
+                                type_list['FloorInfo'] = content.encode('utf-8').strip()
+                    elif len(mianji_rx.findall(dd.span.string if dd.span.string else dd.span.text)) > 0:
+                        for content in dd.contents:
+                            if type(content) == bs4.element.NavigableString and len(content.strip()) > 0:
+                                type_list['Area'] = num_re.findall(content)[0] if len(
+                                    num_re.findall(content)) > 0 else None
+                    elif len(huxing_rx.findall(dd.span.string if dd.span.string else dd.span.text)) > 0:
+                        for content in dd.contents:
+                            if type(content) == bs4.element.NavigableString and len(content.strip()) > 0:
+                                type_list['RoomType'] = content.encode('utf-8').strip()
+                    elif len(jiegou_rx.findall(dd.span.string if dd.span.string else dd.span.text)) > 0:
+                        for content in dd.contents:
+                            if type(content) == bs4.element.NavigableString and len(content.strip()) > 0:
+                                type_list['Structure'] = content.encode('utf-8').strip()
+                    elif len(zhuzhai_rx.findall(dd.span.string if dd.span.string else dd.span.text)) > 0:
+                        for content in dd.contents:
+                            if type(content) == bs4.element.NavigableString and len(content.strip()) > 0:
+                                type_list['HouseCategory'] = content.encode('utf-8').strip()
+                    elif len(jianzhu_rx.findall(dd.span.string if dd.span.string else dd.span.text)) > 0:
+                        for content in dd.contents:
+                            if type(content) == bs4.element.NavigableString and len(content.strip()) > 0:
+                                type_list['BuildingCategory'] = content.encode('utf-8').strip()
+                    elif len(chanquan_rx.findall(dd.span.string if dd.span.string else dd.span.text)) > 0:
+                        for content in dd.contents:
+                            if type(content) == bs4.element.NavigableString and len(content.strip()) > 0:
+                                type_list['PropertyRight'] = content.encode('utf-8').strip()
         telephone = []
-        for child in details.find('span', class_='tel').children:
-            telephone.append(child.string.encode('utf-8').strip())
+        tel_div = details.find('span', class_='tel')
+        if tel_div:
+            for child in tel_div.children:
+                telephone.append(child.string.encode('utf-8').strip())
         row.append(house_num)
         row.append(publish_date)
+        row.append(selling_price)
         row.append(type_list['RoomType'])
         row.append(type_list['Area'])
         row.append(type_list['FloorInfo'])
         row.append(type_list['Direction'])
         row.append(type_list['Decor'])
+        row.append(type_list['Structure'])
+        row.append(type_list['HouseCategory'])
+        row.append(type_list['BuildingCategory'])
+        row.append(type_list['PropertyRight'])
         row.append(type_list['HouseHistory'])
         row.append(school_id)
         row.append(''.join(telephone))
         row.append(','.join(tag_list))
         row.append(train_note)
         row.append(court_id)
-        if len(row) == 14:
+        if len(row) == 18:
             db.insert_db_values(insert_fangcomCourtSellingOnBoard_sql_values(),
                                 insert_fangcomCourtSellingOnBoard_value(row))
         else:
@@ -230,7 +341,7 @@ def save_line(court_id, db, scraper, p):
 
 
 def scrap_detail(db):
-    # drop_tables(db)
+    drop_tables(db)
     db.create_table(create_fangcomCourtSellingOnBoard_table_sql())
     court_list = db.query('select id, name, DetailUrl from fangcomSecondHandCourtName ')
     for (court_id, court_name, court_url) in court_list:
