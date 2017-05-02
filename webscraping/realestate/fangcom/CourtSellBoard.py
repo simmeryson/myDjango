@@ -50,6 +50,8 @@ zhuzhai_rx = re.compile(ur'\w*住宅类别\w*')
 jianzhu_rx = re.compile(ur'\w*建筑类别\w*')
 chanquan_rx = re.compile(ur'\w*产权\w*')
 
+fangyuan_rx = re.compile(ur'\w*房源编号\w*')
+
 
 #
 def drop_tables(db):
@@ -76,7 +78,7 @@ def create_fangcomCourtSellingOnBoard_table_sql():
           "HouseHistory INT , " \
           "SchoolId INT , " \
           "Telephone VARCHAR (30), " \
-          "TagSet SET ('满五唯一','满二','优质教育','特价房','业主自评','地铁', '钥匙') , " \
+          "TagSet SET ('满五唯一','满二','优质教育','特价房','业主自评','地铁', '钥匙', '不限购') , " \
           "TrainNote VARCHAR (50)," \
           "nameId INT NOT NULL ," \
           "FOREIGN Key(nameId) REFERENCES  fangcomSecondHandCourtName(id) on delete cascade on update cascade, " \
@@ -141,6 +143,7 @@ def parse_trade_html(html, court_id, db, scraper):
         for p in html.find_all('p', class_='fangTitle'):
             # 请求房源详细信息
             save_line(court_id, db, scraper, p)
+            print p.a['href']
     except HTMLParseError, e:
         print "HTMLParseError %d: %s! on Table:%s" % (e.args[0], e.args[1], table_name)
     finally:
@@ -149,12 +152,18 @@ def parse_trade_html(html, court_id, db, scraper):
 
 def save_line(court_id, db, scraper, p):
     try:
+        if not p.a and not p.a.get('href'):
+            return
         url = p.a['href']
         scraper.make_header_para({'Referer': scraper.url})
         scraper.url = url
         html_detail = scraper.send_request_get()
         row = []
-        div = html_detail.find('p', class_='gray9 titleAdd') or html_detail.find('p', class_='gray9')
+        fangyuan = html_detail.find_all(string=fangyuan_rx)
+        if len(fangyuan) > 0:
+            div = fangyuan[0].parent.parent
+        if not div:
+            div = html_detail.find('p', class_='gray9 titleAdd') or html_detail.find('p', class_='gray9')
         if not div:
             return
         spans = div.find_all('span')
@@ -235,14 +244,17 @@ def save_line(court_id, db, scraper, p):
                 string = dd.find_all(string=zhuangxiu_rx)[0].string.encode('utf-8').strip()
                 type_list['Decor'] = string.split('：')[1].strip()
             elif len(dd.find_all(string=zhuzhai_rx)) > 0:
-                string = dd.find_all(string=zhuzhai_rx)[0].string.encode('utf-8').strip()
-                type_list['HouseCategory'] = string.split('：')[1].strip()
+                string = dd.find_all(string=zhuzhai_rx)[0].parent
+                if string.parent:
+                    type_list['HouseCategory'] = string.parent.text.split('：')[1].strip()
             elif len(dd.find_all(string=jianzhu_rx)) > 0:
-                string = dd.find_all(string=jianzhu_rx)[0].string.encode('utf-8').strip()
-                type_list['BuildingCategory'] = string.split('：')[1].strip()
+                string = dd.find_all(string=jianzhu_rx)[0].parent
+                if string.parent:
+                    type_list['BuildingCategory'] = string.parent.text.split('：')[1].strip()
             elif len(dd.find_all(string=chanquan_rx)) > 0:
-                string = dd.find_all(string=chanquan_rx)[0].string.encode('utf-8').strip()
-                type_list['PropertyRight'] = string.split('：')[1].strip()
+                string = dd.find_all(string=chanquan_rx)[0].parent
+                if string.parent:
+                    type_list['PropertyRight'] = string.parent.text.split('：')[1].strip()
             elif len(dd.find_all(string=niandai_rx)) > 0:
                 if dd.span:
                     if dd.span.string:
@@ -306,7 +318,7 @@ def save_line(court_id, db, scraper, p):
         tel_div = details.find('span', class_='tel')
         if tel_div:
             for child in tel_div.children:
-                telephone.append(child.string.encode('utf-8').strip())
+                telephone.append(child.string.encode('utf-8').strip() if child.string else '')
         row.append(house_num)
         row.append(publish_date)
         row.append(selling_price)
@@ -353,7 +365,7 @@ def scrap_detail(db):
         try:
             send_request(court_id, court_url, db, url, scraper)
         except:
-            print "error ->> id:" + str(court_id) + "  " + str(url)
+            print "error ->> court id:" + str(court_id) + "  " + str(url)
 
 
 def send_request(court_id, court_url, db, url, scraper):
@@ -361,9 +373,10 @@ def send_request(court_id, court_url, db, url, scraper):
     scraper.make_header_para({'Referer': court_url})
     html = scraper.send_request_get()
     parse_trade_html(html, court_id, db, scraper)
-    time.sleep(0.5)
-    next_page = html.find('a', id='ctl00_hlk_next')
-    if next_page:
+    # time.sleep(0.5)
+    next_page = html.find('a', id='ctl00_hlk_next') or html.find('a', id='PageControl1_hlk_next')
+
+    if next_page and next_page.get('href'):
         next_url = next_page['href']
         send_request(court_id, url, db, next_url, scraper)
 
