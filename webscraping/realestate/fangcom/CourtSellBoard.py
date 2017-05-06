@@ -4,6 +4,7 @@ import re
 import sys
 
 import bs4
+from concurrent import futures
 
 from CourtBasicInfo import CourtBasicInfo
 from CourtFacility import CourtFacility
@@ -140,23 +141,32 @@ def query_school_id(schoolname, db):
 
 def parse_trade_html(html, court_id, db, scraper):
     try:
-        for p in html.find_all('p', class_='fangTitle'):
-            # 请求房源详细信息
-            save_line(court_id, db, scraper, p)
-            print p.a['href']
+        with futures.ThreadPoolExecutor(max_workers=10) as executor:  # 多线程
+            executor_dict = dict(
+                (executor.submit(save_line, court_id, p), p) for p in html.find_all('p', class_='fangTitle'))
+        for future in futures.as_completed(executor_dict):
+            pp = executor_dict[future]
+            if future.exception() is not None:
+                print('%s generated an exception: %s' % (pp.a['href'], future.exception()))
+            else:
+                print('url:%s, Res:%s' % (pp.a['href'], future.result()))
+                # for p in html.find_all('p', class_='fangTitle'):
+                #     # 请求房源详细信息
+                #     save_line(court_id, db, scraper, p)
+                #     print p.a['href']
     except HTMLParseError, e:
         print "HTMLParseError %d: %s! on Table:%s" % (e.args[0], e.args[1], table_name)
     finally:
         print "%s 抓取完成" % table_name
 
 
-def save_line(court_id, db, scraper, p):
+def save_line(court_id, p):
     try:
         if not p.a and not p.a.get('href'):
             return
         url = p.a['href']
+        scraper = Scraping(url)
         scraper.make_header_para({'Referer': scraper.url})
-        scraper.url = url
         html_detail = scraper.send_request_get()
         row = []
         fangyuan = html_detail.find_all(string=fangyuan_rx)
@@ -166,6 +176,10 @@ def save_line(court_id, db, scraper, p):
             div = html_detail.find('p', class_='gray9 titleAdd') or html_detail.find('p', class_='gray9')
         if not div:
             return
+
+        db = DbManager()
+        db.create_db('XianHousePrice')
+
         spans = div.find_all('span')
         tag_list = []
         # 标签和发布时间
@@ -349,7 +363,8 @@ def save_line(court_id, db, scraper, p):
     except:
         print "error ->>court_id:" + court_id
     finally:
-        print "%s 抓取完成" % table_name
+        db.close_db()
+        return "%s 抓取完成" % url
 
 
 def scrap_detail(db):
