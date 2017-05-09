@@ -141,7 +141,7 @@ def query_school_id(schoolname, db):
 
 def parse_trade_html(html, court_id, db, scraper):
     try:
-        with futures.ThreadPoolExecutor(max_workers=10) as executor:  # 多线程
+        with futures.ThreadPoolExecutor(max_workers=20) as executor:  # 多线程
             executor_dict = dict(
                 (executor.submit(save_line, court_id, p), p) for p in html.find_all('p', class_='fangTitle'))
         for future in futures.as_completed(executor_dict):

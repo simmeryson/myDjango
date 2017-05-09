@@ -214,8 +214,12 @@ def parse_macro_html(html, save_row, insert_into, today):
             row.append(v)
             dod_div = div.parent.find_next_sibling('div')
             dod = dod_div.find('span', class_='vfloat dw')
+            prefix = '-'
+            if not dod:
+                dod = dod_div.find('span', class_='vfloat up')
+                prefix = '+'
             v = dod.string.encode('utf-8').strip()
-            row.append(v)
+            row.append(prefix + v)
             # v = dod_div.find('span', class_='ask')['title'].encode('utf-8').strip()
             # row.append(v)
         else:
@@ -226,8 +230,12 @@ def parse_macro_html(html, save_row, insert_into, today):
         row.append(v)
         yoy_div = div.parent.find_next_sibling('div')
         yoy = yoy_div.find('span', class_='vfloat up')
+        prefix = '+'
+        if not yoy:
+            yoy = yoy_div.find('span', class_='vfloat dw')
+            prefix = '-'
         v = yoy.string.encode('utf-8').strip()
-        row.append(v)
+        row.append(prefix + v)
         # v = yoy_div.find('span', class_='ask')['title'].encode('utf-8').strip()
         # row.append(v)
 
@@ -236,8 +244,12 @@ def parse_macro_html(html, save_row, insert_into, today):
         v = today_div.find('span', class_='mr5 numr').string.encode('utf-8').strip()
         row.append(v)
         mom = today_div.find('span', class_='vfloat up')
+        prefix = "+"
+        if not mom:
+            mom = today_div.find('span', class_='vfloat dw')
+            prefix = '-'
         v = mom.string.encode('utf-8').strip()
-        row.append(v)
+        row.append(prefix + v)
         # v = mom['title'].encode('utf-8').strip()
         # row.append(v)
 
