@@ -202,88 +202,99 @@ def insert_crepriceSecondHandMacroPrice_value(row):
             )
 
 
+def insert_crepriceSecondHandMacroPrice_dic(dic):
+    return (dic['date'], dic['TodayPrice'], dic['DoD'], dic['LastMonthPrice'],
+            dic['YoY'], dic['CurrentMonthPrice'], dic['MoM'], dic['TodayNewSupplyNumber'],
+            dic['SellNumber'], dic['SellValue'], dic['EstateGardenNumber'], dic['TradeAmount'],
+            dic['AveragePrice'], dic['LastNewSupplyNumber'], dic['AverageArea'])
+
+
 def parse_macro_html(html, save_row, insert_into, today):
     try:
+        type_list = {'date': None, 'TodayPrice': None, 'DoD': None,
+                     'LastMonthPrice': None, 'YoY': None, 'CurrentMonthPrice': None,
+                     'MoM': None, 'TodayNewSupplyNumber': None,
+                     'SellNumber': None, 'SellValue': None, 'EstateGardenNumber': None,
+                     'TradeAmount': None, 'AveragePrice': None, 'LastNewSupplyNumber': None,
+                     'AverageArea': None,
+                     }
 
         price_div = html.find('div', class_='cityprice_sy1 city-price clearfix')
-        row = [today]
+        type_list['date'] = today
         # TodayPrice 当日房价
-        div = price_div.find('span', class_='value green')
-        if div is not None:
-            v = div.string.encode('utf-8').strip()
-            row.append(v)
-            dod_div = div.parent.find_next_sibling('div')
+        ul = price_div.find('ul', class_='price-r')
+        li = ul.find('li') if ul else None
+        if li:
+            div = li.find('div', class_='pr-value fl')
+            type_list['TodayPrice'] = div.find('span').string.encode('utf-8').strip()
+            dod_div = li.find('div', class_='pr-float fl')
             dod = dod_div.find('span', class_='vfloat dw')
             prefix = '-'
             if not dod:
                 dod = dod_div.find('span', class_='vfloat up')
                 prefix = '+'
             v = dod.string.encode('utf-8').strip()
-            row.append(prefix + v)
-            # v = dod_div.find('span', class_='ask')['title'].encode('utf-8').strip()
-            # row.append(v)
-        else:
-            row.extend(['', ''])
-        # 上月房价
-        div = price_div.find('span', class_='value red')
-        v = div.string.encode('utf-8').strip()
-        row.append(v)
-        yoy_div = div.parent.find_next_sibling('div')
-        yoy = yoy_div.find('span', class_='vfloat up')
-        prefix = '+'
-        if not yoy:
-            yoy = yoy_div.find('span', class_='vfloat dw')
-            prefix = '-'
-        v = yoy.string.encode('utf-8').strip()
-        row.append(prefix + v)
-        # v = yoy_div.find('span', class_='ask')['title'].encode('utf-8').strip()
-        # row.append(v)
+            type_list['DoD'] = prefix + v
+
+            last_month = li.find_next_sibling('li')
+            div = last_month.find('div', class_='pr-value fl')
+            type_list['LastMonthPrice'] = div.find('span').string.encode('utf-8').strip()
+            yoy_div = last_month.find('div', class_='pr-float fl')
+            yoy = yoy_div.find('span', class_='vfloat up')
+            prefix = '+'
+            if not yoy:
+                yoy = yoy_div.find('span', class_='vfloat dw')
+                prefix = '-'
+            v = yoy.string.encode('utf-8').strip()
+            type_list['YoY'] = prefix + v
 
         # 当月房价
         today_div = price_div.find('div', attrs={'class': 'price40'})
         v = today_div.find('span', class_='mr5 numr').string.encode('utf-8').strip()
-        row.append(v)
+        type_list['CurrentMonthPrice'] = v
         mom = today_div.find('span', class_='vfloat up')
         prefix = "+"
         if not mom:
             mom = today_div.find('span', class_='vfloat dw')
             prefix = '-'
         v = mom.string.encode('utf-8').strip()
-        row.append(prefix + v)
-        # v = mom['title'].encode('utf-8').strip()
-        # row.append(v)
+        type_list['MoM'] = prefix + v
 
         v = today_div.find_next_sibling('p').span.string.encode('utf-8').strip()
-        row.append(v)
+        type_list['TodayNewSupplyNumber'] = v
 
         # SellNumber 出售数量
-        for span in html.find('ul', class_='gbox clearfix').find_all('span'):
-            v = span.string.encode('utf-8').strip()
-            row.append(v)
+        ul = html.find('ul', class_='gbox clearfix')
+        if ul:
+            for span in ul.find_all('span'):
+                v = span.string.encode('utf-8').strip()
+                type_list['SellNumber'] = v
 
         # EstateGardenNumber 楼盘小区个数
         numbs = re.compile(ur'\b-?\d+\.?\d*\b')
         tao = re.compile(ur'万')
         div = html.find('div', class_='tips-sy1 mb5')
-        for s in div.contents:
-            if type(s) == bs4.element.NavigableString:
-                v = numbs.findall(s.strip(), 0)
-                v = v[0] if len(v) > 0 else ''
-                b = tao.findall(s.strip(), 0)
-                v = v if len(b) == 0 else v + b[0]
-                row.append(v)
+        if div:
+            for s in div.contents:
+                if type(s) == bs4.element.NavigableString:
+                    v = numbs.findall(s.strip(), 0)
+                    v = v[0] if len(v) > 0 else ''
+                    b = tao.findall(s.strip(), 0)
+                    if len(b) == 0:
+                        type_list['EstateGardenNumber'] = v
+                    elif len(b) > 0:
+                        type_list['TradeAmount'] = v + b[0]
 
-        # AveragePrice平均总价
-        avg_row = []
-        for span in div.parent.find_all('span', class_='pricedata'):
-            v = span.span.span.string.encode('utf-8').strip()
-            avg_row.append(v)
-        row.extend(avg_row[1:])
+            # AveragePrice平均总价
+            avg_row = []
+            for span in div.parent.find_all('span', class_='pricedata'):
+                v = span.span.span.string.encode('utf-8').strip()
+                avg_row.append(v)
+            type_list['AveragePrice'] = avg_row[1]
+            type_list['LastNewSupplyNumber'] = avg_row[2]
+            type_list['AverageArea'] = avg_row[3]
 
-        if len(row) == 15:
-            insert_into(save_row(), insert_crepriceSecondHandMacroPrice_value(row))
-        else:
-            print "wrong row size: " + " ".join(row)
+        insert_into(save_row(), insert_crepriceSecondHandMacroPrice_dic(type_list))
 
     except MySQLdb.Error, e:
         print "Mysql Error %d: %s  on Table:%s" % (e.args[0], e.args[1], 'crepriceSecondHandMacroPrice')
