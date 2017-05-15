@@ -36,6 +36,9 @@ city_list = [('xa', 'XianHousePrice'), ('bj', 'BeijingHousePrice'), ('sh', 'Shan
 
 mounth_date = ""
 
+today_rx = re.compile(ur'今日')
+lastMon_rx = re.compile(ur'上月')
+
 
 # 创建表crepriceSecondHandMonthPrice
 # creprice.cn的房价数据
@@ -62,7 +65,7 @@ def insert_crepriceSecondHandMonthPrice_value(row):
 
 def insert_crepriceSecondHandMonthPrice_sql_values():
     # 引号坑死人.字段内不能加特殊符号 比如%
-    sql = "insert into crepriceSecondHandMonthPrice (date, SupplyPrice, FocusPrice)" \
+    sql = "replace into crepriceSecondHandMonthPrice (date, SupplyPrice, FocusPrice)" \
           " VALUES (%s, %s, %s)"
     return sql
 
@@ -110,7 +113,7 @@ def create_crepriceSecondHandPriceHistogram_table_sql():
 
 def insert_crepriceSecondHandPriceHistogram_sql_values():
     # 引号坑死人.字段内不能加特殊符号 比如%
-    sql = "insert into crepriceSecondHandPriceHistogram (date, PriceRange, SupplyProportion, FocusProportion)" \
+    sql = "replace into crepriceSecondHandPriceHistogram (date, PriceRange, SupplyProportion, FocusProportion)" \
           " VALUES (%s, %s, %s, %s)"
     return sql
 
@@ -173,7 +176,7 @@ def create_crepriceSecondHandMacroPrice_table_sql():
 
 def insert_crepriceSecondHandMacroPrice_sql_values():
     # 引号坑死人.字段内不能加特殊符号 比如%
-    sql = "insert into crepriceSecondHandMacroPrice " \
+    sql = "replace into crepriceSecondHandMacroPrice " \
           "(date, " \
           "TodayPrice, " \
           "DoD, " \
@@ -222,12 +225,11 @@ def parse_macro_html(html, save_row, insert_into, today):
         price_div = html.find('div', class_='cityprice_sy1 city-price clearfix')
         type_list['date'] = today
         # TodayPrice 当日房价
-        ul = price_div.find('ul', class_='price-r')
-        li = ul.find('li') if ul else None
-        if li:
-            div = li.find('div', class_='pr-value fl')
+        today_string = price_div.find_all(string=today_rx)
+        if len(today_string) > 0:
+            div = today_string[0].parent.find_next_sibling('div', class_='pr-value fl')
             type_list['TodayPrice'] = div.find('span').string.encode('utf-8').strip()
-            dod_div = li.find('div', class_='pr-float fl')
+            dod_div = today_string[0].parent.find_next_sibling('div', class_='pr-float fl')
             dod = dod_div.find('span', class_='vfloat dw')
             prefix = '-'
             if not dod:
@@ -236,10 +238,11 @@ def parse_macro_html(html, save_row, insert_into, today):
             v = dod.string.encode('utf-8').strip()
             type_list['DoD'] = prefix + v
 
-            last_month = li.find_next_sibling('li')
-            div = last_month.find('div', class_='pr-value fl')
+        lastMon_string = price_div.find_all(string=lastMon_rx)
+        if len(lastMon_string) > 0:
+            div = lastMon_string[0].parent.find_next_sibling('div', class_='pr-value fl')
             type_list['LastMonthPrice'] = div.find('span').string.encode('utf-8').strip()
-            yoy_div = last_month.find('div', class_='pr-float fl')
+            yoy_div = lastMon_string[0].parent.find_next_sibling('div', class_='pr-float fl')
             yoy = yoy_div.find('span', class_='vfloat up')
             prefix = '+'
             if not yoy:
