@@ -4,7 +4,7 @@ import threading
 import requests
 import ujson
 
-from proxy.Proxy import Proxy
+from Proxy import Proxy
 
 logger = logging.getLogger()
 

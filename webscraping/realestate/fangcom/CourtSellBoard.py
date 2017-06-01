@@ -9,6 +9,7 @@ from concurrent import futures
 from CourtBasicInfo import CourtBasicInfo
 from CourtFacility import CourtFacility
 from CourtContextInfo import CourtContextInfo
+from webscraping.proxy.ProxyProvider import ProxyProvider
 
 sys.path.append('../../..')
 sys.path.append('../..')
@@ -52,6 +53,8 @@ jianzhu_rx = re.compile(ur'\w*建筑类别\w*')
 chanquan_rx = re.compile(ur'\w*产权\w*')
 
 fangyuan_rx = re.compile(ur'\w*房源编号\w*')
+
+proxyProvider = ProxyProvider()
 
 
 #
@@ -141,33 +144,32 @@ def query_school_id(schoolname, db):
 
 def parse_trade_html(html, court_id, db, scraper):
     try:
-        with futures.ThreadPoolExecutor(max_workers=20) as executor:  # 多线程
-            executor_dict = dict(
-                (executor.submit(save_line, court_id, p), p) for p in html.find_all('p', class_='fangTitle'))
-        for future in futures.as_completed(executor_dict):
-            pp = executor_dict[future]
-            if future.exception() is not None:
-                print('%s generated an exception: %s' % (pp.a['href'], future.exception()))
-            else:
-                print('url:%s, Res:%s' % (pp.a['href'], future.result()))
-                # for p in html.find_all('p', class_='fangTitle'):
-                #     # 请求房源详细信息
-                #     save_line(court_id, db, scraper, p)
-                #     print p.a['href']
+        with futures.ThreadPoolExecutor(max_workers=45) as executor:  # 多线程
+            for p in html.find_all('p', class_='fangTitle'):
+                executor.submit(save_line, court_id, p)
+
     except HTMLParseError, e:
         print "HTMLParseError %d: %s! on Table:%s" % (e.args[0], e.args[1], table_name)
-    finally:
-        print "%s 抓取完成" % table_name
 
 
 def save_line(court_id, p):
+    if not p.a and not p.a.get('href'):
+        return
+    url = p.a['href']
+    scraper = Scraping(url)
+    while True:
+        proxy = proxyProvider.pick()
+        try:
+            scraper.make_header_para({'Referer': scraper.url})
+            html_detail = scraper.send_request('GET', None, {"https": proxy.url}, 5, False)
+            parse_detai_html(html_detail, court_id, scraper, url)
+            break
+        except Exception as ex:
+            proxy.fatal_error()
+
+
+def parse_detai_html(html_detail, court_id, scraper, url):
     try:
-        if not p.a and not p.a.get('href'):
-            return
-        url = p.a['href']
-        scraper = Scraping(url)
-        scraper.make_header_para({'Referer': scraper.url})
-        html_detail = scraper.send_request_get()
         row = []
         fangyuan = html_detail.find_all(string=fangyuan_rx)
         if len(fangyuan) > 0:
@@ -206,7 +208,7 @@ def save_line(court_id, p):
                 else:
                     publish_date = publish[0].replace('/', '-') if len(publish) > 0 else None
 
-        # 具体信息
+                    # 具体信息
         school_id = None
         selling_price = None
         details = html_detail.find('div', class_='inforTxt')
@@ -222,7 +224,7 @@ def save_line(court_id, p):
             elif dt.find('div', id='schoolname'):
                 schoolname = dt.find('div', id='schoolname').a.string.encode('utf-8').strip()
                 school_id = query_school_id(schoolname, db)
-        # 房屋属性
+                # 房屋属性
         type_list = {'RoomType': None, 'Area': None, 'FloorInfo': None,
                      'Direction': None, 'Decor': None, 'Structure': None,
                      'HouseCategory': None, 'BuildingCategory': None,
@@ -356,12 +358,13 @@ def save_line(court_id, p):
                                 insert_fangcomCourtSellingOnBoard_value(row))
         else:
             print "wrong row size: " + " ".join(row)
+
     except MySQLdb.Error, e:
         print "Mysql Error %d: %s  on Table:%s" % (e.args[0], e.args[1], table_name)
     except HTMLParseError, e:
         print "HTMLParseError %d: %s! on Table:%s" % (e.args[0], e.args[1], table_name)
-    except:
-        print "error ->>court_id:" + court_id
+    except Exception as ex:
+        print "error ->>court_id:" + court_id + "   msg:" + ex
     finally:
         db.close_db()
         return "%s 抓取完成" % url
@@ -379,8 +382,8 @@ def scrap_detail(db):
         scraper = Scraping(url)
         try:
             send_request(court_id, court_url, db, url, scraper)
-        except:
-            print "error ->> court id:" + str(court_id) + "  " + str(url)
+        except Exception as ex:
+            print "error ->> court id:" + str(court_id) + "  " + str(url) +  "   msg:" + ex
 
 
 def send_request(court_id, court_url, db, url, scraper):
@@ -388,7 +391,6 @@ def send_request(court_id, court_url, db, url, scraper):
     scraper.make_header_para({'Referer': court_url})
     html = scraper.send_request_get()
     parse_trade_html(html, court_id, db, scraper)
-    # time.sleep(0.5)
     next_page = html.find('a', id='ctl00_hlk_next') or html.find('a', id='PageControl1_hlk_next')
 
     if next_page and next_page.get('href'):

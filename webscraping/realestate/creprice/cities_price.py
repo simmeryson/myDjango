@@ -81,7 +81,7 @@ def parse_price_html(html, save_row, insert_into):
         for line in data_lines[start:end]:
             l = line.split(',')
             row = [s for s in l]
-            if len(row) == 3:
+            if len(row) == 3 or len(row) == 4:
                 insert_into(save_row(), insert_crepriceSecondHandMonthPrice_value(row))
             else:
                 print "wrong row size: " + " ".join(row)
@@ -253,13 +253,18 @@ def parse_macro_html(html, save_row, insert_into, today):
 
         # 当月房价
         today_div = price_div.find('div', attrs={'class': 'price40'})
-        v = today_div.find('span', class_='mr5 numr').string.encode('utf-8').strip()
+        v_num = today_div.find('span', class_='mr5')
+        if not v_num:
+            v_num = today_div.find('span', class_='mr5 numr')
+        v = v_num.string.encode('utf-8').strip()
         type_list['CurrentMonthPrice'] = v
         mom = today_div.find('span', class_='vfloat up')
         prefix = "+"
         if not mom:
             mom = today_div.find('span', class_='vfloat dw')
             prefix = '-'
+        if not mom:
+            mom = today_div.find('span', class_='vfloat')
         v = mom.string.encode('utf-8').strip()
         type_list['MoM'] = prefix + v
 

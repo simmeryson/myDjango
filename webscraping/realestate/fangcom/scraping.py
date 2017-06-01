@@ -114,6 +114,13 @@ class Scraping(object):
         html = BeautifulSoup(response.text, "html5lib")
         return html
 
+    def send_request(self, method, data, proxies, timeout, verify):
+        response = requests.request(method=method, url=self.url, data=data,
+                                    headers=self.headers, proxies=proxies, timeout=timeout, verify=verify)
+        response.encoding = response.apparent_encoding  # 网页设定编码格式
+        html = BeautifulSoup(response.text, "html5lib")
+        return html
+
     def make_post_para(self, paras):
         for (k, v) in paras.iteritems():
             self.form_data[k] = v
