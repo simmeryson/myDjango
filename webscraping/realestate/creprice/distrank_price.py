@@ -53,7 +53,7 @@ def insert_crepriceSecondHandDistRank_value(row):
 
 def insert_crepriceSecondHandDistRank_sql_values():
     # 引号坑死人.字段内不能加特殊符号 比如%
-    sql = "insert into crepriceSecondHandDistRank (" \
+    sql = "replace into crepriceSecondHandDistRank (" \
           "date, " \
           "DistrictName, " \
           "AveragePrice, " \
