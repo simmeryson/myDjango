@@ -3,7 +3,7 @@ import time
 import bs4
 from bs4 import BeautifulSoup
 import requests
-import datetime
+import datetime, calendar
 
 
 class Scraping(object):
@@ -15,12 +15,16 @@ class Scraping(object):
     }
 
     iso_format = '%Y-%m-%d'  # 设置输出格式
+    mon_format = '%Y-%m'
+    year_format = '%Y'
 
     def __init__(self, url=None, form_data=None):
         if form_data is None:
             form_data = {}
         self.url = url
         self.form_data = form_data
+        self.html_response = None
+        self.html_text = None
 
     # 获得今天的日期
     def get_today_date(self):
@@ -100,6 +104,26 @@ class Scraping(object):
         gen_list.append((s, t))
         return gen_list
 
+    def get_month_list_with_length(self, length, start):
+        month_list = []
+        today = datetime.date.today()
+        year = today.strftime(self.year_format)
+        month = year + "-" + start if len(start) == 2 else year + "-0" + start
+        month_list.append(month)
+        for i in range(length):
+            date = datetime.datetime.strptime(month, "%Y-%m")
+            month = (date - datetime.timedelta(days=1)).strftime(self.mon_format)
+            month_list.append(month)
+            # length -= 1
+
+        # for i in range(length):
+        #     date = datetime.datetime.strptime(month, "%Y-%m")
+        #     days = calendar.monthrange(date.year, date.month)[1]
+        #     dalta = datetime.timedelta(days=days)
+        #     month = (date - dalta).strftime(self.mon_format)
+        #     month_list.append(month)
+        return month_list
+
     # post发送请求
     def send_request_post(self):
         session = requests.Session()
@@ -132,4 +156,12 @@ class Scraping(object):
     def send_get_return_text(self):
         response = requests.get(self.url, headers=self.headers)
         response.encoding = response.apparent_encoding  # 网页设定编码格式
+        self.html_response = BeautifulSoup(response.text, "html5lib")
+        self.html_text = response.text
         return response.text
+
+    def get_html_response(self):
+        return self.html_response
+
+    def get_html_text(self):
+        return self.html_text

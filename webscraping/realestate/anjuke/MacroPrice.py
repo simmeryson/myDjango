@@ -28,9 +28,11 @@ sys.setdefaultencoding('utf8')
 city_list = [('xa', 'XianHousePrice', 'https://xa.anjuke.com/market/'),
              ]
 
-table_name = 'anjukeDistricts'
+table_name = 'anjukePriceOfDistrict'
 quyu_rx = re.compile(ur'^区域\s')
 price_rx = re.compile(ur"(id:'regionChart',[\s\S]*?ydata:)(?P<first>\[(.*?)\])")
+
+num_rx = re.compile(ur'\d+')
 
 
 # proxyProvider = ProxyProvider()
@@ -41,50 +43,15 @@ def drop_tables(db):
     db.drop_table(table_name)
 
 
-# 总数据
-# creprice.cn的房价数据
-def create_anjukeDistricts_table_sql():
-    sql = "CREATE TABLE IF NOT EXISTS anjukeDistricts" \
+def create_anjukePriceOfDistrict_table_sql():
+    sql = "CREATE TABLE IF NOT EXISTS anjukePriceOfDistrict" \
           "(id int(11) NOT NULL AUTO_INCREMENT," \
-          "`name` VARCHAR (50) NOT NULL , " \
-          "`belong` VARCHAR (50)," \
-          "PRIMARY KEY(id)" \
-          ")" \
-          "ENGINE=InnoDB " \
-          "AUTO_INCREMENT=1 " \
-          "DEFAULT CHARSET=utf8"
-    return sql
-
-
-def insert_anjukeDistricts_sql_values():
-    # 引号坑死人.字段内不能加特殊符号 比如%
-    sql = "replace into anjukeDistricts " \
-          "(`name` , " \
-          "`belong`" \
-          ") " \
-          "VALUES (%s, %s)"
-    return sql
-
-
-def insert_anjukeDistricts_value(row):
-    return (row[0], row[1] or None
-            )
-
-
-def insert_anjukeDistricts_dic(dic):
-    return (dic['name'], dic['belong']
-            )
-
-
-def create_anjukePriceOfDate_table_sql:
-    sql = "CREATE TABLE IF NOT EXISTS anjukePriceOfDate" \
-          "(id int(11) NOT NULL AUTO_INCREMENT," \
-          "`date` DATE NOT NULL , " \
+          "`date` VARCHAR (20) NOT NULL , " \
           "`price` INT (8), " \
           "`district` VARCHAR (50) NOT NULL ," \
+          "`belong` VARCHAR (50)  NOT NULL," \
           "PRIMARY KEY(id)," \
-          "FOREIGN KEY (`district`) REFERENCES anjukeDistricts(`name`)on delete cascade on update cascade, " \
-          "UNIQUE KEY (`date`,`district`)" \
+          "UNIQUE KEY (`date`,`district`, `belong`)" \
           ")" \
           "ENGINE=InnoDB " \
           "AUTO_INCREMENT=1 " \
@@ -92,41 +59,82 @@ def create_anjukePriceOfDate_table_sql:
     return sql
 
 
-def insert_anjukePriceOfDate_sql_values():
+def insert_anjukePriceOfDistrict_sql_values():
     # 引号坑死人.字段内不能加特殊符号 比如%
-    sql = "replace into anjukePriceOfDate " \
+    sql = "replace into anjukePriceOfDistrict " \
           "(`date` , " \
           "`price`," \
-          "`district`" \
+          "`district`," \
+          "`belong`" \
           ") " \
-          "VALUES (%s, %s, %s)"
+          "VALUES (%s, %s, %s, %s)"
     return sql
 
 
-def insert_anjukePriceOfDate_value(row):
-    return (row[0], row[1] or None, row[2]
+def insert_anjukePriceOfDistrict_value(row):
+    return (row[0], row[1] or None, row[2], row[3]
             )
 
 
-def insert_anjukePriceOfDate_dic(dic):
-    return (dic['date'], dic['price'], dic['district']
+def insert_anjukePriceOfDistrict_dic(dic):
+    return (dic['date'], dic['price'], dic['district'], dic['belong']
             )
 
 
-def district_price(dist_dic, scraper):
+def parse_html(scraper, name, db):
+    html = scraper.get_html_response()
+    dist = html.find_all('div', class_='smallArea')
+    if not dist:
+        save_line(db, html, name, scraper)
+
+    elif len(dist) > 0:
+        for a in dist[0].find_all('a'):
+            url = a['href'] if a.get('href') else None
+            if url:
+                second_name = a.string.encode('utf-8').strip()
+                scraper.url = url
+                scraper.send_get_return_text()
+                second_html = scraper.get_html_response()
+                save_line(db, second_html, second_name, scraper, name)
+
+
+def save_line(db, html, name, scraper, belong=None):
+    data_list = parse_data_list(scraper.get_html_text())
+    h2 = html.find('h2', class_='highLight')
+    if h2:
+        price = h2.em.string.encode('utf-8').strip()
+        if price == str(data_list[-1]):
+            string = h2.next.encode('utf-8').strip()
+            month = re.findall(num_rx, string)[0]
+            month_list = scraper.get_month_list_with_length(len(data_list) - 1, month)
+            data_list = data_list[::-1]
+            for i in range(len(month_list)):
+                if not belong:
+                    belong = name
+                dic = {'date': month_list[i], 'price': data_list[i], 'district': name, 'belong': belong}
+                # row = [month_list[i], data_list[i], name, None]
+                db.insert_db_values(insert_anjukePriceOfDistrict_sql_values(),
+                                    insert_anjukePriceOfDistrict_dic(dic))
+
+
+def district_price(dist_dic, scraper, db):
     for (name, url) in dist_dic:
         scraper.url = url
-        # html = scraper.send_request_get()
-        html = scraper.send_get_return_text()
-        match = re.search(price_rx, html.encode('utf-8'))
-        price = match.group('first') + "}"
-        data = json.loads(price[1:] if price.startswith('[') else price)
-        data_list = data['data']
+        scraper.send_get_return_text()
+        parse_html(scraper, name, db)
+
+
+def parse_data_list(html_text):
+    match = re.search(price_rx, html_text.encode('utf-8'))
+    price = match.group('first') + "}"
+    data = json.loads(price[1:] if price.startswith('[') else price)
+    data_list = data['data']
+    return data_list
 
 
 def getDistricts(db, url):
     drop_tables(db)
-    db.create_table(create_anjukeDistricts_table_sql())
+    db.create_table(create_anjukePriceOfDistrict_table_sql())
     scraper = Scraping(url)
     html = scraper.send_request_get()
     quyu = html.find_all(string=quyu_rx)
@@ -138,9 +146,9 @@ def getDistricts(db, url):
         key = a.string.encode('utf-8').strip()
         val = a['href']
         dist_dic.append((key, val))
-        row = [key, None]
-        db.insert_db_values(insert_anjukeDistricts_sql_values(), insert_anjukeDistricts_value(row))
-    district_price(dist_dic, scraper)
+        # row = [key, None]
+        # db.insert_db_values(insert_anjukeDistricts_sql_values(), insert_anjukeDistricts_value(row))
+    district_price(dist_dic, scraper, db)
 
 
 def scraping_today():
