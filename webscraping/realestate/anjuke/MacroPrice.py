@@ -89,13 +89,18 @@ def parse_html(scraper, name, db):
 
     elif len(dist) > 0:
         for a in dist[0].find_all('a'):
-            url = a['href'] if a.get('href') else None
-            if url:
-                second_name = a.string.encode('utf-8').strip()
-                scraper.url = url
-                scraper.send_get_return_text()
-                second_html = scraper.get_html_response()
-                save_line(db, second_html, second_name, scraper, name)
+            with futures.ThreadPoolExecutor(max_workers=20) as executor:  # 多线程
+                executor.submit(second_district, a, db, name, scraper)
+
+
+def second_district(a, db, name, scraper):
+    url = a['href'] if a.get('href') else None
+    if url:
+        second_name = a.string.encode('utf-8').strip()
+        scraper.url = url
+        scraper.send_get_return_text()
+        second_html = scraper.get_html_response()
+        save_line(db, second_html, second_name, scraper, name)
 
 
 def save_line(db, html, name, scraper, belong=None):
@@ -117,11 +122,11 @@ def save_line(db, html, name, scraper, belong=None):
                                     insert_anjukePriceOfDistrict_dic(dic))
 
 
-def district_price(dist_dic, scraper, db):
-    for (name, url) in dist_dic:
-        scraper.url = url
-        scraper.send_get_return_text()
-        parse_html(scraper, name, db)
+def district_price(name, url, scraper, db):
+    # for (name, url) in dist_dic:
+    scraper.url = url
+    scraper.send_get_return_text()
+    parse_html(scraper, name, db)
 
 
 def parse_data_list(html_text):
@@ -148,17 +153,26 @@ def getDistricts(db, url):
         dist_dic.append((key, val))
         # row = [key, None]
         # db.insert_db_values(insert_anjukeDistricts_sql_values(), insert_anjukeDistricts_value(row))
-    district_price(dist_dic, scraper, db)
+    # district_price(dist_dic, scraper, db)
+    for (name, url) in dist_dic:
+        with futures.ThreadPoolExecutor(max_workers=20) as executor:  # 多线程
+            executor.submit(district_price, name, url, scraper, db)
 
 
 def scraping_today():
+    start = time.time()
     db = DbManager()
+    try:
+        for city, db_name, url in city_list:
+            db.create_db(db_name)
+            getDistricts(db, url)
 
-    for city, db_name, url in city_list:
-        db.create_db(db_name)
-        getDistricts(db, url)
+        db.close_db()
+    except Exception as ex:
+        print ex
 
-    db.close_db()
+    end = time.time()
+    print end - start
 
 
 scraping_today()

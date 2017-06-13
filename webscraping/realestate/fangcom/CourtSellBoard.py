@@ -54,7 +54,7 @@ chanquan_rx = re.compile(ur'\w*产权\w*')
 
 fangyuan_rx = re.compile(ur'\w*房源编号\w*')
 
-# proxyProvider = ProxyProvider()
+proxyProvider = ProxyProvider()
 
 
 #
