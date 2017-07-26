@@ -13,7 +13,7 @@ class DbManager(object):
 
         try:
             self.conn = MySQLdb.connect(host='127.0.0.1', user=USER_NAME, passwd=PSSWRD, connect_timeout=10,
-                                        charset='utf8')
+                                        charset='utf8mb4')
             # 使用cursor()方法获取操作游标
             self.cursor = self.conn.cursor()
             self.cursor.execute('SET NAMES utf8')
@@ -28,14 +28,18 @@ class DbManager(object):
 
     def select_db(self, name):
         self.conn.select_db(name)
-        self.cursor.execute("set character_set_server='utf8'")
-        self.cursor.execute("set character_set_database='utf8'")
+        # Enforce UTF-8 for the connection.
+        self.cursor.execute('SET NAMES utf8mb4')
+        self.cursor.execute("SET CHARACTER SET utf8mb4")
+        self.cursor.execute("SET character_set_connection=utf8mb4")
+        self.cursor.execute("set character_set_server='utf8mb4'")
+        self.cursor.execute("set character_set_database='utf8mb4'")
         self.cursor.execute("SELECT VERSION()")
         data = self.cursor.fetchone()
         print "Database version : %s " % data
 
     def create_db(self, db_name):
-        self.cursor.execute("CREATE DATABASE IF NOT EXISTS %s"
+        self.cursor.execute("CREATE DATABASE IF NOT EXISTS `%s`"
                             # " CHARACTER SET 'utf8' COLLATE 'utf8_general_ci'"
                             % db_name)
         self.select_db(db_name)

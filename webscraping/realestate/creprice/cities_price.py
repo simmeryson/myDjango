@@ -288,7 +288,7 @@ def parse_macro_html(html, save_row, insert_into, today):
                     v = numbs.findall(s.strip(), 0)
                     v = v[0] if len(v) > 0 else ''
                     b = tao.findall(s.strip(), 0)
-                    if len(b) == 0:
+                    if len(b) == 0 and len(v) > 0:
                         type_list['EstateGardenNumber'] = v
                     elif len(b) > 0:
                         type_list['TradeAmount'] = v + b[0]

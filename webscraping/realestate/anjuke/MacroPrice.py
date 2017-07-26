@@ -7,7 +7,7 @@ import json
 import bs4
 from concurrent import futures
 
-from webscraping.proxy.ProxyProvider import ProxyProvider
+# from webscraping.proxy.ProxyProvider import ProxyProvider
 
 sys.path.append('../../..')
 sys.path.append('../..')
@@ -26,6 +26,12 @@ sys.setdefaultencoding('utf8')
 # 住宅 小区
 
 city_list = [('xa', 'XianHousePrice', 'https://xa.anjuke.com/market/'),
+             ('bj', 'BeijingHousePrice', 'https://beijing.anjuke.com/market/'),
+             ('sh', 'ShanghaiHousePrice', 'https://shanghai.anjuke.com/market/'),
+             ('hz', 'HangzhouHousePrice', 'https://hangzhou.anjuke.com/market/'),
+             ('sz', 'ShenzhenHousePrice', 'https://shenzhen.anjuke.com/market/'),
+             ('cd', 'ChengduHousePrice', 'https://chengdu.anjuke.com/market/'),
+             ('gz', 'GuangzhouHousePrice', 'https://guangzhou.anjuke.com/market/')
              ]
 
 table_name = 'anjukePriceOfDistrict'
