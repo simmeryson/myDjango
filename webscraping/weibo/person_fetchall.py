@@ -15,16 +15,21 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
+import pickle
 
 sys.path.append('../../..')
 sys.path.append('../..')
 from webscraping.db_manage import DbManager
 
-person_list = [('bladeofwind', ur'勿怪幸'), ('1852299857', ur'屠龙的胭脂井')]
-login_users = [('17791252591', 'LKJHGF'), ('17791252590', 'LKJHGF')]
+person_list = [('bladeofwind', ur'勿怪幸'), ('1852299857', ur'屠龙的胭脂井'), ('5506682114', ur'断线的红风筝'),
+               ('1907214345', ur'侯安扬HF '), ('xaymaca', ur'交易员评论'), ('1704422861', ur'振波二象'),
+               ('lapetitprince', ur'杰瑞Au'), ('508637358', ur'___ER___')]
+login_users = [('17791252591', 'LKJHGF'), ('17791252590', 'LKJHGF'), ('17791252596', 'LKJHGF')]
 
 driver = webdriver.Firefox(executable_path='/usr/local/bin/geckodriver')
 wait = ui.WebDriverWait(driver, 10)
+
+infofile = codecs.open("SinaWeibo_Info.txt", 'a', 'utf-8')
 
 
 # ********************************************************************************
@@ -51,7 +56,20 @@ def LoginWeibo(username, password):
         # elem_user = find_wait_by_xpath("//input[@id='loginname']")
         login_btn = find_wait_by_xpath("//a[@node-type='loginBtn']")
         login_btn.click()
-        #
+
+        # 载入 Cookies
+        # try:
+        #     with open("cookies.pkl", 'rb') as f:
+        #         dic = pickle.load(f)
+        #         cookies = dic[username] if dic else None
+        #         if cookies:
+        #             for cookie in cookies:
+        #                 cookie['domain'] = str(cookie['domain']).replace(".", "", 1) if str(
+        #                     cookie['domain']).startswith(".") else cookie['domain']
+        #                 driver.add_cookie(cookie)
+        # except EOFError:
+        #     pass
+
         login_div = find_wait_by_xpath("//div[@node-type='layoutContent']")
         #
         elem_user = login_div.find_element_by_xpath("//input[@node-type='username' and @tabindex='3']")
@@ -70,7 +88,6 @@ def LoginWeibo(username, password):
             if elm.text == u'登录':
                 elem_submit = elm
                 elem_submit.click()
-
         # 重点: 暂停时间输入验证码
         # pause(millisenconds)
         time.sleep(30)
@@ -81,12 +98,21 @@ def LoginWeibo(username, password):
 
         # 获取Coockie 推荐 http://www.cnblogs.com/fnng/p/3269450.html
         print driver.current_url
-        print driver.get_cookies()  # 获得cookie信息 dict存储
-        print u'输出Cookie键值对信息:'
-        for cookie in driver.get_cookies():
-            # print cookie
-            for key in cookie:
-                print key, cookie[key]
+        # print driver.get_cookies()  # 获得cookie信息 dict存储
+
+        # 保存 Cookies
+        # try:
+        #     with open("cookies.pkl", 'wb') as f:
+        #         dic = {username: driver.get_cookies()}
+        #         pickle.dump(dic, f)
+        # except EOFError:
+        #     pass
+
+        # print u'输出Cookie键值对信息:'
+        # for cookie in driver.get_cookies():
+        #     # print cookie
+        #     for key in cookie:
+        #         print key, cookie[key]
 
         # driver.get_cookies()类型list 仅包含一个元素cookie类型dict
         print u'登陆成功...'
@@ -235,7 +261,7 @@ def VisitPersonPage(user_id, db, page_index=-1):
 
 def parse_weibo_item(url, page, db, user_id):
     item_url = url + "?page=" + str(page)
-    print u'访问 page = ' + str(page)
+    print u'访问 page = ' + item_url
     driver.get(item_url)
     find_wait_by_xpath("//input[@name='mp' and @type='hidden']")
     for item in driver.find_elements_by_xpath("//div[@class='c']")[::-1]:
@@ -284,18 +310,17 @@ def find_wait_by_xpath(xpath):
 def fetch_weibo_personal():
     start = time.time()
     db = DbManager()
-    username = login_users[1][0]  # 输入你的用户名
-    password = login_users[1][1]  # 输入你的密码
+    username, password = login_users[2]  # 输入你的用户名
     user_id = '1852299857'  # 用户id url+id访问个人   https://weibo.cn/bladeofwind?page=188
 
     # 操作函数
     if LoginWeibo(username, password):  # 登陆微博
         db.create_db("weibo")
 
-        person_url, person_name = person_list[0]
-        # db.drop_table(person_url)
+        person_url, person_name = person_list[5]
+        db.drop_table(person_url)
         db.create_table(create_table_sql(person_url, person_name))
-        VisitPersonPage(person_url, db, 2)  # 访问个人页面
+        VisitPersonPage(person_url, db)  # 访问个人页面
 
     end = time.time()
     print end - start
@@ -303,7 +328,7 @@ def fetch_weibo_personal():
 
 def create_table_sql(table_name, person_name):
     sql = "CREATE TABLE IF NOT EXISTS `%s`" \
-          "(id int(11) NOT NULL AUTO_INCREMENT," \
+          " (id int(11) NOT NULL AUTO_INCREMENT," \
           "`itemId` VARCHAR(30)  NOT NULL , " \
           "`contentHtml` VARCHAR(15000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL," \
           "PRIMARY KEY(id)," \
@@ -319,8 +344,8 @@ def create_table_sql(table_name, person_name):
 
 def insert_sql_values(table_name):
     # 引号坑死人.字段内不能加特殊符号 比如%
-    sql = "replace into  " + table_name + \
-          "(`itemId` , " \
+    sql = "replace into  `" + table_name + \
+          "` (`itemId` , " \
           "`contentHtml`" \
           ") " \
           "VALUES (%s, %s)"
