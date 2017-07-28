@@ -29,7 +29,23 @@ login_users = [('17791252591', 'LKJHGF'), ('17791252590', 'LKJHGF'), ('177912525
 driver = webdriver.Firefox(executable_path='/usr/local/bin/geckodriver')
 wait = ui.WebDriverWait(driver, 10)
 
-infofile = codecs.open("SinaWeibo_Info.txt", 'a', 'utf-8')
+
+def fetch_weibo_personal():
+    start = time.time()
+    db = DbManager()
+    username, password = login_users[0]  # 输入你的用户名
+    user_id = '1852299857'  # 用户id url+id访问个人   https://weibo.cn/bladeofwind?page=188
+
+    # 操作函数
+    if LoginWeibo(username, password):  # 登陆微博
+        db.create_db("weibo")
+
+        person_url, person_name = person_list[-1]
+        db.create_table(create_table_sql(person_url, person_name))
+        VisitPersonPage(person_url, db, 857)  # 访问个人页面
+
+    end = time.time()
+    print end - start
 
 
 # ********************************************************************************
@@ -181,8 +197,16 @@ def VisitPersonPage(user_id, db, page_index=-1):
         if input_hidden:
             all_pages = input_hidden.get_attribute('value') if page_index < 1 else page_index
             for page in range(int(all_pages), 0, -1):
-                parse_weibo_item(url, page, db, user_id)
-
+                count = 1
+                while count < 6:
+                    try:
+                        parse_weibo_item(url, page, db, user_id)
+                        break
+                    except Exception, e:
+                        print "Error: ", e
+                        count += 1
+                        time.sleep(0.5)
+                        print "count: ", count
         # ***************************************************************************
         # No.2 获取微博内容
         # http://weibo.cn/guangxianliuyan?filter=0&page=1
@@ -306,24 +330,6 @@ def find_wait_by_xpath(xpath):
 # infofile.close()
 # inforead.close()
 
-
-def fetch_weibo_personal():
-    start = time.time()
-    db = DbManager()
-    username, password = login_users[2]  # 输入你的用户名
-    user_id = '1852299857'  # 用户id url+id访问个人   https://weibo.cn/bladeofwind?page=188
-
-    # 操作函数
-    if LoginWeibo(username, password):  # 登陆微博
-        db.create_db("weibo")
-
-        person_url, person_name = person_list[5]
-        db.drop_table(person_url)
-        db.create_table(create_table_sql(person_url, person_name))
-        VisitPersonPage(person_url, db)  # 访问个人页面
-
-    end = time.time()
-    print end - start
 
 
 def create_table_sql(table_name, person_name):
