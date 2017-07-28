@@ -14,7 +14,6 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from bs4 import BeautifulSoup
 import pickle
 
 sys.path.append('../../..')
@@ -207,6 +206,8 @@ def VisitPersonPage(user_id, db, page_index=-1):
                         count += 1
                         time.sleep(0.5)
                         print "count: ", count
+                else:
+                    raise Exception("parse weibo item error!")
         # ***************************************************************************
         # No.2 获取微博内容
         # http://weibo.cn/guangxianliuyan?filter=0&page=1
