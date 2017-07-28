@@ -15,24 +15,43 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import pickle
+from collections import OrderedDict
 
 sys.path.append('../../..')
 sys.path.append('../..')
 from webscraping.db_manage import DbManager
 
-person_list = [('bladeofwind', ur'勿怪幸'), ('1852299857', ur'屠龙的胭脂井'), ('5506682114', ur'断线的红风筝'),
+person_list = [('bladeofwind', ur'勿怪幸'), ('5506682114', ur'断线的红风筝'),
                ('1907214345', ur'侯安扬HF '), ('xaymaca', ur'交易员评论'), ('1704422861', ur'振波二象'),
-               ('lapetitprince', ur'杰瑞Au'), ('508637358', ur'___ER___')]
+               ('lapetitprince', ur'杰瑞Au'), ('508637358', ur'___ER___'), ('1318809415', ur'yanhaijin'),
+               ('1614106000', ur'椒图炼丹炉'), ('cloudly', ur'cloudly'), ('2538681243', ur'小不丢灵'), ('wpeak', ur'西峯')]
 login_users = [('17791252591', 'LKJHGF'), ('17791252590', 'LKJHGF'), ('17791252596', 'LKJHGF')]
 
 driver = webdriver.Firefox(executable_path='/usr/local/bin/geckodriver')
 wait = ui.WebDriverWait(driver, 10)
 
 
-def fetch_weibo_personal():
+def fetch_new_weibo():
     start = time.time()
     db = DbManager()
-    username, password = login_users[0]  # 输入你的用户名
+    username, password = login_users[2]  # 输入你的用户名
+
+    # 操作函数
+    if LoginWeibo(username, password):  # 登陆微博 ('1852299857', ur'屠龙的胭脂井'),
+        db.create_db("weibo")
+        # person_url, person_name = person_list[3]
+        for person_url, person_name in person_list:
+            db.create_table(create_table_sql(person_url, person_name))
+            VisitPersonPage(person_url, db, parse_new_weibo)
+    end = time.time()
+    print end - start
+    db.close_db()
+
+
+def fetch_all_personal():
+    start = time.time()
+    db = DbManager()
+    username, password = login_users[2]  # 输入你的用户名
     user_id = '1852299857'  # 用户id url+id访问个人   https://weibo.cn/bladeofwind?page=188
 
     # 操作函数
@@ -41,7 +60,7 @@ def fetch_weibo_personal():
 
         person_url, person_name = person_list[-1]
         db.create_table(create_table_sql(person_url, person_name))
-        VisitPersonPage(person_url, db, 857)  # 访问个人页面
+        VisitPersonPage(person_url, db, parse_all_weibo)  # 访问个人页面
 
     end = time.time()
     print end - start
@@ -144,7 +163,7 @@ def LoginWeibo(username, password):
 #        编码常见错误 UnicodeEncodeError: 'ascii' codec can't encode characters
 # ********************************************************************************
 
-def VisitPersonPage(user_id, db, page_index=-1):
+def VisitPersonPage(user_id, db, parse_item_func, page_index=-1):
     try:
         global infofile
         print u'准备访问个人网站.....'
@@ -192,22 +211,8 @@ def VisitPersonPage(user_id, db, page_index=-1):
         num_fs = int(guid[0])
         print u'粉丝数: ' + str(num_fs)
 
-        input_hidden = find_wait_by_xpath("//input[@name='mp' and @type='hidden']")
-        if input_hidden:
-            all_pages = input_hidden.get_attribute('value') if page_index < 1 else page_index
-            for page in range(int(all_pages), 0, -1):
-                count = 1
-                while count < 6:
-                    try:
-                        parse_weibo_item(url, page, db, user_id)
-                        break
-                    except Exception, e:
-                        print "Error: ", e
-                        count += 1
-                        time.sleep(0.5)
-                        print "count: ", count
-                else:
-                    raise Exception("parse weibo item error!")
+        parse_item_func(db, page_index, url, user_id)
+
         # ***************************************************************************
         # No.2 获取微博内容
         # http://weibo.cn/guangxianliuyan?filter=0&page=1
@@ -279,9 +284,29 @@ def VisitPersonPage(user_id, db, page_index=-1):
 
     except Exception, e:
         print "Error: ", e
+        db.close_db()
     finally:
         print u'VisitPersonPage!\n\n'
         print '**********************************************\n'
+
+
+def parse_all_weibo(db, page_index, url, user_id):
+    input_hidden = find_wait_by_xpath("//input[@name='mp' and @type='hidden']")
+    if input_hidden:
+        all_pages = input_hidden.get_attribute('value') if page_index < 1 else page_index
+        for page in range(int(all_pages), 0, -1):
+            count = 1
+            while count < 6:
+                try:
+                    parse_weibo_item(url, page, db, user_id)
+                    break
+                except Exception, e:
+                    print "Error: ", e
+                    count += 1
+                    time.sleep(0.5)
+                    print "count: ", count
+            else:
+                raise Exception("parse weibo item error!")
 
 
 def parse_weibo_item(url, page, db, user_id):
@@ -296,6 +321,56 @@ def parse_weibo_item(url, page, db, user_id):
             outer = item.get_attribute("outerHTML")
             dic = {'id': _id, 'outerHtml': outer}
             db.insert_db_values(insert_sql_values(user_id), insert_dic(dic))
+
+
+def parse_new_weibo(db, page_index, url, user_id):
+    new_dic = OrderedDict()
+    input_hidden = find_wait_by_xpath("//input[@name='mp' and @type='hidden']")
+    if input_hidden:
+        ids = query_last_item_id(db, user_id)
+        last_id = ids[0] if len(ids) > 0 else "--111"
+        all_pages = input_hidden.get_attribute('value')
+        for page in range(1, int(all_pages)):
+            count = 1
+            while count < 6:
+                try:
+                    if parse_new_item(url, page, db, user_id, new_dic, last_id):
+                        return
+                    else:
+                        break
+                except Exception, e:
+                    print "Error: ", e
+                    count += 1
+                    time.sleep(0.5)
+                    print "count: ", count
+            else:
+                raise Exception("parse weibo item error!")
+
+
+def parse_new_item(url, page, db, user_id, new_dic, ids):
+    item_url = url + "?page=" + str(page)
+    print u'访问 page = ' + item_url
+    driver.get(item_url)
+    find_wait_by_xpath("//input[@name='mp' and @type='hidden']")
+    for item in driver.find_elements_by_xpath("//div[@class='c']"):
+        _id = item.get_attribute('id')
+        if _id:
+            # inner = item.get_attribute("innerHTML")
+            outer = item.get_attribute("outerHTML")
+            new_dic[_id] = outer
+            # print u'更新 ' + str(len(new_dic)) + u' 条'
+            if ids == _id:
+                save_whole_page(db, new_dic, user_id)
+                return True
+    else:
+        return False
+
+
+def save_whole_page(db, new_dic, user_id):
+    for new_id in new_dic.keys()[::-1]:
+        print u'更新 id: ' + new_id
+        dic = {'id': new_id, 'outerHtml': new_dic[new_id]}
+        db.insert_db_values(insert_sql_values(user_id), insert_dic(dic))
 
 
 def find_wait_by_xpath(xpath):
@@ -351,7 +426,7 @@ def create_table_sql(table_name, person_name):
 
 def insert_sql_values(table_name):
     # 引号坑死人.字段内不能加特殊符号 比如%
-    sql = "replace into  `" + table_name + \
+    sql = "REPLACE INTO  `" + table_name + \
           "` (`itemId` , " \
           "`contentHtml`" \
           ") " \
@@ -363,4 +438,12 @@ def insert_dic(dic):
     return (dic['id'], dic['outerHtml'])
 
 
-fetch_weibo_personal()
+def query_last_item_id(db, table_name):
+    sql = 'select `itemId` from `%s` order by id desc limit 1' % table_name
+    ids = db.query(sql)
+    return ids[0] if len(ids) > 0 else None
+
+
+# fetch_all_personal()
+
+fetch_new_weibo()
