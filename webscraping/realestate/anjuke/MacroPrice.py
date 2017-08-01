@@ -144,7 +144,7 @@ def parse_data_list(html_text):
 
 
 def getDistricts(db, url):
-    drop_tables(db)
+    # drop_tables(db)
     db.create_table(create_anjukePriceOfDistrict_table_sql())
     scraper = Scraping(url)
     html = scraper.send_request_get()
@@ -170,6 +170,7 @@ def scraping_today():
     db = DbManager()
     try:
         for city, db_name, url in city_list:
+            print city
             db.create_db(db_name)
             getDistricts(db, url)
 

@@ -20,4 +20,5 @@ python PledgeRepoDaily.py
 python ../realestate/creprice/cities_price.py
 python ../realestate/creprice/distrank_price.py
 #python ../realestate/anjuke/MacroPrice.py
+python ../weibo/person_fetchall.py
 fi

@@ -21,11 +21,13 @@ sys.path.append('../../..')
 sys.path.append('../..')
 from webscraping.db_manage import DbManager
 
-person_list = [('bladeofwind', ur'勿怪幸'), ('5506682114', ur'断线的红风筝'),
+login_users = [('17791252591', 'LKJHGF'), ('17791252590', 'LKJHGF'), ('17791252596', 'LKJHGF')]
+
+person_list = [('bladeofwind', ur'勿怪幸'), ('1852299857', ur'屠龙的胭脂井'), ('5506682114', ur'断线的红风筝'),
                ('1907214345', ur'侯安扬HF '), ('xaymaca', ur'交易员评论'), ('1704422861', ur'振波二象'),
                ('lapetitprince', ur'杰瑞Au'), ('508637358', ur'___ER___'), ('1318809415', ur'yanhaijin'),
-               ('1614106000', ur'椒图炼丹炉'), ('cloudly', ur'cloudly'), ('2538681243', ur'小不丢灵'), ('wpeak', ur'西峯')]
-login_users = [('17791252591', 'LKJHGF'), ('17791252590', 'LKJHGF'), ('17791252596', 'LKJHGF')]
+               ('1614106000', ur'椒图炼丹炉'), ('cloudly', ur'cloudly'), ('2538681243', ur'小不丢灵'), ('wpeak', ur'西峯'),
+               ('kuhasu', u'kuhasu'), ('3235523970', ur'霸王日本金融生活史')]
 
 driver = webdriver.Firefox(executable_path='/usr/local/bin/geckodriver')
 wait = ui.WebDriverWait(driver, 10)
@@ -60,7 +62,8 @@ def fetch_all_personal():
 
         person_url, person_name = person_list[-1]
         db.create_table(create_table_sql(person_url, person_name))
-        VisitPersonPage(person_url, db, parse_all_weibo)  # 访问个人页面
+        db.create_table(create_quanwen_table())
+        VisitPersonPage(person_url, db, parse_all_weibo)  # 最后参数确定从哪一页开始
 
     end = time.time()
     print end - start
@@ -110,12 +113,8 @@ def LoginWeibo(username, password):
         elem_user.clear()
         elem_user.send_keys(username)  # 用户名
         elem_pwd = driver.find_element_by_xpath("//input[@node-type='password' and @tabindex='4']")
-        # elem_pwd = login_div.find_element_by_xpath("//input[@node-type='password']")
-        # elem_pwd = driver.find_element_by_xpath("/html/body/div[2]/form/div/input[2]")
         elem_pwd.clear()
         elem_pwd.send_keys(password)  # 密码
-        # elem_rem = driver.find_element_by_name("remember")
-        # elem_rem.click()             #记住登录状态
         elem_submits = driver.find_elements_by_xpath(
             "//a[@node-type='submitBtn' and @class='W_btn_a btn_34px' and @tabindex='6']")
         for elm in elem_submits:
@@ -126,29 +125,7 @@ def LoginWeibo(username, password):
         # pause(millisenconds)
         time.sleep(30)
 
-        # elem_sub = driver.find_element_by_name("submit")
-        # elem_sub.click()  # 点击登陆
-        # time.sleep(2)
-
-        # 获取Coockie 推荐 http://www.cnblogs.com/fnng/p/3269450.html
         print driver.current_url
-        # print driver.get_cookies()  # 获得cookie信息 dict存储
-
-        # 保存 Cookies
-        # try:
-        #     with open("cookies.pkl", 'wb') as f:
-        #         dic = {username: driver.get_cookies()}
-        #         pickle.dump(dic, f)
-        # except EOFError:
-        #     pass
-
-        # print u'输出Cookie键值对信息:'
-        # for cookie in driver.get_cookies():
-        #     # print cookie
-        #     for key in cookie:
-        #         print key, cookie[key]
-
-        # driver.get_cookies()类型list 仅包含一个元素cookie类型dict
         print u'登陆成功...'
         return True
 
@@ -213,72 +190,6 @@ def VisitPersonPage(user_id, db, parse_item_func, page_index=-1):
 
         parse_item_func(db, page_index, url, user_id)
 
-        # ***************************************************************************
-        # No.2 获取微博内容
-        # http://weibo.cn/guangxianliuyan?filter=0&page=1
-        # 其中filter=0表示全部 =1表示原创
-        # ***************************************************************************
-
-        # print '\n'
-        # print u'获取微博内容信息'
-        # num = 1
-        # while num <= 5:
-        #     url_wb = "http://weibo.cn/" + user_id + "?filter=0&page=" + str(num)
-        #     print url_wb
-        #     driver.get(url_wb)
-        #     # info = driver.find_element_by_xpath("//div[@id='M_DiKNB0gSk']/")
-        #     info = driver.find_elements_by_xpath("//div[@class='c']")
-        #     for value in info:
-        #         print value.text
-        #         info = value.text
-        #
-        #         # 跳过最后一行数据为class=c
-        #         # Error:  'NoneType' object has no attribute 'groups'
-        #         if u'设置:皮肤.图片' not in info:
-        #             if info.startswith(u'转发'):
-        #                 print u'转发微博'
-        #                 infofile.write(u'转发微博\r\n')
-        #             else:
-        #                 print u'原创微博'
-        #                 infofile.write(u'原创微博\r\n')
-        #
-        #             # 获取最后一个点赞数 因为转发是后有个点赞数
-        #             str1 = info.split(u" 赞")[-1]
-        #             if str1:
-        #                 val1 = re.match(r'(.∗?)', str1).groups()[0]
-        #                 print u'点赞数: ' + val1
-        #                 infofile.write(u'点赞数: ' + str(val1) + '\r\n')
-        #
-        #             str2 = info.split(u" 转发")[-1]
-        #             if str2:
-        #                 val2 = re.match(r'(.∗?)', str2).groups()[0]
-        #                 print u'转发数: ' + val2
-        #                 infofile.write(u'转发数: ' + str(val2) + '\r\n')
-        #
-        #             str3 = info.split(u" 评论")[-1]
-        #             if str3:
-        #                 val3 = re.match(r'(.∗?)', str3).groups()[0]
-        #                 print u'评论数: ' + val3
-        #                 infofile.write(u'评论数: ' + str(val3) + '\r\n')
-        #
-        #             str4 = info.split(u" 收藏 ")[-1]
-        #             flag = str4.find(u"来自")
-        #             print u'时间: ' + str4[:flag]
-        #             infofile.write(u'时间: ' + str4[:flag] + '\r\n')
-        #
-        #             print u'微博内容:'
-        #             print info[:info.rindex(u" 赞")]  # 后去最后一个赞位置
-        #             infofile.write(info[:info.rindex(u" 赞")] + '\r\n')
-        #             infofile.write('\r\n')
-        #             print '\n'
-        #         else:
-        #             print u'跳过', info, '\n'
-        #             break
-        #     else:
-        #         print u'next page...\n'
-        #         infofile.write('\r\n\r\n')
-        #     num += 1
-        #     print '\n\n'
         print '**********************************************'
 
 
@@ -309,26 +220,42 @@ def parse_all_weibo(db, page_index, url, user_id):
                 raise Exception("parse weibo item error!")
 
 
+def get_quanwen_item(db, user_id):
+    """全文还需要打开"""
+    quanwen_list = driver.find_elements_by_xpath("//span[a='全文']")
+    url_list = [quanwen_span.find_element_by_xpath("./a").get_attribute('href') for quanwen_span in quanwen_list]
+    for url_ in url_list:
+        split_url = url_.split('/')
+        if not split_url[-2] == 'comment':
+            continue
+        driver.get(url_)
+        find_wait_by_xpath("//input[@value='评论' and @type='submit']")
+        out = driver.find_element_by_xpath("//body").get_attribute('outerHTML')
+        maps = {'id': split_url[-1], 'userId': user_id, 'outerHtml': out}
+        print u"全文: " + split_url[-1]
+        db.insert_db_values(insert_quanwen_values(), insert_quanwen_dic(maps))
+
+
 def parse_weibo_item(url, page, db, user_id):
     item_url = url + "?page=" + str(page)
     print u'访问 page = ' + item_url
     driver.get(item_url)
     find_wait_by_xpath("//input[@name='mp' and @type='hidden']")
-    for item in driver.find_elements_by_xpath("//div[@class='c']")[::-1]:
-        _id = item.get_attribute('id')
-        if _id:
-            # inner = item.get_attribute("innerHTML")
-            outer = item.get_attribute("outerHTML")
-            dic = {'id': _id, 'outerHtml': outer}
-            db.insert_db_values(insert_sql_values(user_id), insert_dic(dic))
+    # for item in driver.find_elements_by_xpath("//div[@class='c']")[::-1]:
+    #     _id = item.get_attribute('id')
+    #     if _id:
+    #         # inner = item.get_attribute("innerHTML")
+    #         outer = item.get_attribute("outerHTML")
+    #         dic = {'id': _id, 'outerHtml': outer}
+    #         db.insert_db_values(insert_sql_values(user_id), insert_dic(dic))
+    get_quanwen_item(db, user_id)
 
 
 def parse_new_weibo(db, page_index, url, user_id):
     new_dic = OrderedDict()
     input_hidden = find_wait_by_xpath("//input[@name='mp' and @type='hidden']")
     if input_hidden:
-        ids = query_last_item_id(db, user_id)
-        last_id = ids[0] if len(ids) > 0 else "--111"
+        last_id = query_last_item_id(db, user_id)
         all_pages = input_hidden.get_attribute('value')
         for page in range(1, int(all_pages)):
             count = 1
@@ -345,6 +272,8 @@ def parse_new_weibo(db, page_index, url, user_id):
                     print "count: ", count
             else:
                 raise Exception("parse weibo item error!")
+            if page == int(all_pages):
+                save_whole_page(db, new_dic, user_id)
 
 
 def parse_new_item(url, page, db, user_id, new_dic, ids):
@@ -361,12 +290,15 @@ def parse_new_item(url, page, db, user_id, new_dic, ids):
             # print u'更新 ' + str(len(new_dic)) + u' 条'
             if ids == _id:
                 save_whole_page(db, new_dic, user_id)
+                get_quanwen_item(db, user_id)
                 return True
     else:
+        get_quanwen_item(db, user_id)
         return False
 
 
 def save_whole_page(db, new_dic, user_id):
+    print u'共 ' + str(len(new_dic)) + u'条'
     for new_id in new_dic.keys()[::-1]:
         print u'更新 id: ' + new_id
         dic = {'id': new_id, 'outerHtml': new_dic[new_id]}
@@ -439,11 +371,49 @@ def insert_dic(dic):
 
 
 def query_last_item_id(db, table_name):
-    sql = 'select `itemId` from `%s` order by id desc limit 1' % table_name
+    """置顶问题"""
+    sql = 'select `itemId`,`contentHtml` from `%s` order by id desc limit 2' % table_name
     ids = db.query(sql)
-    return ids[0] if len(ids) > 0 else None
+    if len(ids) == 0:
+        return '-1'
+    elif len(ids) == 1:
+        return ids[0][0]
+    elif str(ids[0][1]).find('置顶') != -1:
+        return ids[1][0]
+    else:
+        return ids[0][0]
 
 
-# fetch_all_personal()
+def create_quanwen_table():
+    sql = "CREATE TABLE IF NOT EXISTS `quanwen` " \
+          " (id INT(11) NOT NULL AUTO_INCREMENT," \
+          "`itemId` VARCHAR(30)  NOT NULL , " \
+          "`userId` VARCHAR(30)  NOT NULL , " \
+          "`contentHtml` VARCHAR(15000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL," \
+          "PRIMARY KEY(id)," \
+          "UNIQUE KEY (`itemId`)" \
+          ")" \
+          "ENGINE=InnoDB " \
+          "AUTO_INCREMENT=1 " \
+          "DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_unicode_ci "
+    return sql
 
-fetch_new_weibo()
+
+def insert_quanwen_values():
+    # 引号坑死人.字段内不能加特殊符号 比如%
+    sql = "REPLACE INTO  `quanwen` " \
+          "(`itemId` , " \
+          "`userId` ," \
+          "`contentHtml`" \
+          ") " \
+          "VALUES (%s, %s, %s)"
+    return sql
+
+
+def insert_quanwen_dic(dic):
+    return (dic['id'], dic['userId'], dic['outerHtml'])
+
+
+fetch_all_personal()
+
+# fetch_new_weibo()
