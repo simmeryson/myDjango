@@ -1564,3 +1564,1052 @@ JavaScript warning: http://js.t.sinajs.cn/t6/webim_prime/js/webim.js?v=150160105
 2017-08-01 23:26:12.139 plugin-container[74797:10639673] Warning: did not get back bottom left metric
 2017-08-01 23:26:12.139 plugin-container[74797:10639673] Warning: did not get back top right metric
 1501601172453	Marionette	INFO	Ceased listening
+1501683834821	geckodriver	INFO	Listening on 127.0.0.1:56829
+1501683835932	geckodriver::marionette	INFO	Starting browser /Applications/Firefox.app/Contents/MacOS/firefox-bin with args ["-marionette"]
+1501683839171	Marionette	INFO	Listening on port 56901
+1501683839342	Marionette	WARN	TLS certificate errors will be ignored for this session
+1501683839692	Marionette	DEBUG	loaded listener.js
+1501683839794	Marionette	DEBUG	Received DOM event "beforeunload" for "about:blank"
+2017-08-02 22:23:59.896 plugin-container[88071:10987542] *** CFMessagePort: bootstrap_register(): failed 1100 (0x44c) 'Permission denied', port = 0x943b, name = 'com.apple.tsm.portname'
+See /usr/include/servers/bootstrap_defs.h for the error codes.
+2017-08-02 22:23:59.897 plugin-container[88071:10987542] *** CFMessagePort: bootstrap_register(): failed 1100 (0x44c) 'Permission denied', port = 0x9703, name = 'com.apple.CFPasteboardClient'
+See /usr/include/servers/bootstrap_defs.h for the error codes.
+1501683842379	Marionette	DEBUG	Received DOM event "pagehide" for "about:blank"
+1501683842380	Marionette	DEBUG	Received DOM event "unload" for "about:blank"
+1501683842399	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://passport.weibo.com/visitor/visitor?entry=miniblog&a=enter&url=http%3A%2F%2Fweibo.com%2F&domain=.weibo.com&ua=php-sso_sdk_client-0.6.23&_rand=1501683839.4394"
+1501683842433	Marionette	DEBUG	Received DOM event "pageshow" for "https://passport.weibo.com/visitor/visitor?entry=miniblog&a=enter&url=http%3A%2F%2Fweibo.com%2F&domain=.weibo.com&ua=php-sso_sdk_client-0.6.23&_rand=1501683839.4394"
+1501683938952	Marionette	DEBUG	Received observer notification "outer-window-destroyed" for "2147483655"
+1501683939151	Marionette	DEBUG	Canceled page load listener because no navigation has been detected
+1501683941570	Marionette	DEBUG	Canceled page load listener because no navigation has been detected
+JavaScript warning: http://js2.t.sinajs.cn/t6/webim_prime/js/common/all.js?version=a3b53067a530e025, line 1: unreachable code after return statement
+JavaScript warning: http://js2.t.sinajs.cn/t6/webim_prime/js/common/all.js?version=a3b53067a530e025, line 1: unreachable code after return statement
+JavaScript warning: http://js.t.sinajs.cn/t6/webim_prime/js/webim.js?v=1501683956706, line 139: unreachable code after return statement
+JavaScript warning: http://js.t.sinajs.cn/t6/webim_prime/js/webim.js?v=1501683956706, line 139: unreachable code after return statement
+JavaScript warning: http://js.t.sinajs.cn/t6/webim_prime/js/webim.js?v=1501683956706, line 172: unreachable code after return statement
+JavaScript warning: http://js.t.sinajs.cn/t6/webim_prime/js/webim.js?v=1501683956706, line 174: unreachable code after return statement
+JavaScript warning: http://js.t.sinajs.cn/t6/webim_prime/js/webim.js?v=1501683956706, line 198: unreachable code after return statement
+JavaScript warning: http://js.t.sinajs.cn/t6/webim_prime/js/webim.js?v=1501683956706, line 200: unreachable code after return statement
+JavaScript warning: http://js.t.sinajs.cn/t6/webim_prime/js/webim.js?v=1501683956706, line 207: unreachable code after return statement
+JavaScript warning: http://js.t.sinajs.cn/t6/webim_prime/js/webim.js?v=1501683956706, line 174: unreachable code after return statement
+JavaScript warning: http://js.t.sinajs.cn/t6/webim_prime/js/webim.js?v=1501683956706, line 139: unreachable code after return statement
+1501683971779	Marionette	DEBUG	Received DOM event "beforeunload" for "http://weibo.com/u/6323276131/home?wvr=5"
+1501683974008	Marionette	DEBUG	Received DOM event "pagehide" for "http://weibo.com/u/6323276131/home?wvr=5"
+1501683974010	Marionette	DEBUG	Received DOM event "unload" for "http://weibo.com/u/6323276131/home?wvr=5"
+1501683974026	Marionette	DEBUG	Received DOM event "pageshow" for "https://login.sina.com.cn/sso/login.php?url=https%3A%2F%2Fweibo.cn%2Fbladeofwind&_rand=1501683973.1614&gateway=1&service=sinawap&entry=sinawap&useticket=1&returntype=META&sudaref=&_client_version=0.6.26"
+2017-08-02 22:26:17.504 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:17.504 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:17.530 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:17.530 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:17.531 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:17.531 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:17.673 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:17.673 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:17.676 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:17.676 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:17.677 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:17.677 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:17.727 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:17.727 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:17.731 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:17.731 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:17.732 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:17.732 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501683977972	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/bladeofwind"
+1501683979163	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/bladeofwind"
+1501683979164	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/bladeofwind"
+1501683979180	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/bladeofwind?page=1"
+1501683979439	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/bladeofwind?page=1"
+2017-08-02 22:26:19.491 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:19.491 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:19.492 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:19.492 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:19.493 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:19.493 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501683979966	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/bladeofwind?page=1"
+1501683980670	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/bladeofwind?page=1"
+1501683980671	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/bladeofwind?page=1"
+1501683980685	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/comment/Ffdi3CbCz"
+2017-08-02 22:26:20.756 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:20.756 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:20.756 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:20.756 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:20.783 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:20.783 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501683980789	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/comment/Ffdi3CbCz"
+1501683980877	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/comment/Ffdi3CbCz"
+1501683982421	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/comment/Ffdi3CbCz"
+1501683982422	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/comment/Ffdi3CbCz"
+1501683982434	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/comment/Ffdi3CbCz"
+2017-08-02 22:26:22.459 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:22.459 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:22.460 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:22.460 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:22.472 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:22.472 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501683982477	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/comment/Ffdi3CbCz"
+1501683982568	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/comment/Ffdi3CbCz"
+1501683983375	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/comment/Ffdi3CbCz"
+1501683983376	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/comment/Ffdi3CbCz"
+1501683983411	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/comment/Ffcimx8M8"
+2017-08-02 22:26:23.424 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:23.424 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:23.425 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:23.425 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:23.446 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:23.446 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501683983520	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/comment/Ffcimx8M8"
+1501683983590	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/comment/Ffcimx8M8"
+1501683984498	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/comment/Ffcimx8M8"
+1501683984499	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/comment/Ffcimx8M8"
+1501683984521	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/bladeofwind?page=2"
+2017-08-02 22:26:24.590 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:24.591 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:24.592 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:24.593 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:24.593 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:24.593 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501683984741	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/bladeofwind?page=2"
+2017-08-02 22:26:24.759 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:24.759 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:24.760 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:24.760 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:24.760 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:24.760 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501683985129	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/bladeofwind?page=2"
+1501683986039	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/bladeofwind?page=2"
+1501683986040	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/bladeofwind?page=2"
+1501683986058	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/comment/Ffcimx8M8"
+2017-08-02 22:26:26.105 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:26.105 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:26.107 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:26.107 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:26.113 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:26.113 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501683986129	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/comment/Ffcimx8M8"
+1501683986204	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/comment/Ffcimx8M8"
+1501683986845	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/comment/Ffcimx8M8"
+1501683986845	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/comment/Ffcimx8M8"
+1501683986860	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/comment/Ffcoy4lCT"
+2017-08-02 22:26:26.906 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:26.906 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:26.907 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:26.907 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:26.920 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:26.920 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501683986971	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/comment/Ffcoy4lCT"
+1501683987054	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/comment/Ffcoy4lCT"
+1501683988247	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/comment/Ffcoy4lCT"
+1501683988247	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/comment/Ffcoy4lCT"
+1501683988264	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/1852299857"
+2017-08-02 22:26:28.436 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:28.436 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:28.437 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:28.437 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:28.437 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:28.437 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:28.492 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:28.492 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:28.493 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:28.493 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:28.494 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:28.494 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501683988587	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/1852299857"
+1501683988846	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/1852299857"
+1501683989945	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/1852299857"
+1501683989945	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/1852299857"
+1501683989965	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/1852299857?page=1"
+1501683990065	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/1852299857?page=1"
+1501683990516	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/1852299857?page=1"
+1501683991921	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/1852299857?page=1"
+1501683991922	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/1852299857?page=1"
+1501683991941	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/comment/FffUPAVfB"
+1501683991968	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/comment/FffUPAVfB"
+2017-08-02 22:26:31.984 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:31.984 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:31.985 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:31.985 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:32.001 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:32.001 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501683992059	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/comment/FffUPAVfB"
+1501683993208	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/comment/FffUPAVfB"
+1501683993209	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/comment/FffUPAVfB"
+1501683993223	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/comment/FfdVxwlBR"
+2017-08-02 22:26:33.248 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:33.248 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:33.249 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:33.249 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:33.268 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:33.268 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501683993275	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/comment/FfdVxwlBR"
+1501683993353	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/comment/FfdVxwlBR"
+1501683993921	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/comment/FfdVxwlBR"
+1501683993922	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/comment/FfdVxwlBR"
+1501683993958	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/1852299857?page=2"
+2017-08-02 22:26:33.996 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:33.996 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501683994094	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/1852299857?page=2"
+2017-08-02 22:26:34.136 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:34.136 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:34.137 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:34.137 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:34.138 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:34.138 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501683994563	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/1852299857?page=2"
+1501683995837	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/1852299857?page=2"
+1501683995838	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/1852299857?page=2"
+1501683995854	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/comment/Ff3dYpkAE"
+1501683995876	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/comment/Ff3dYpkAE"
+2017-08-02 22:26:35.900 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:35.900 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:35.901 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:35.901 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501683995974	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/comment/Ff3dYpkAE"
+1501683997214	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/comment/Ff3dYpkAE"
+1501683997214	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/comment/Ff3dYpkAE"
+1501683997244	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/1852299857?page=3"
+1501683997326	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/1852299857?page=3"
+2017-08-02 22:26:37.361 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:37.361 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:37.364 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:37.364 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:37.365 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:37.365 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501683997652	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/1852299857?page=3"
+1501683998471	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/1852299857?page=3"
+1501683998472	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/1852299857?page=3"
+1501683998492	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/comment/Ff78GFnJH"
+2017-08-02 22:26:38.529 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:38.529 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:38.530 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:38.530 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:38.542 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:38.542 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501683998547	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/comment/Ff78GFnJH"
+1501683998615	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/comment/Ff78GFnJH"
+1501683999294	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/comment/Ff78GFnJH"
+1501683999294	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/comment/Ff78GFnJH"
+1501683999343	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/comment/Ff62cqVKh"
+2017-08-02 22:26:39.354 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:39.354 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:39.355 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:39.355 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501683999441	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/comment/Ff62cqVKh"
+1501683999502	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/comment/Ff62cqVKh"
+1501684001038	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/comment/Ff62cqVKh"
+1501684001039	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/comment/Ff62cqVKh"
+1501684001088	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/comment/Ff5LOiiNh"
+2017-08-02 22:26:41.096 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:41.096 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:41.097 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:41.097 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:41.111 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:41.111 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684001117	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/comment/Ff5LOiiNh"
+1501684001224	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/comment/Ff5LOiiNh"
+1501684002704	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/comment/Ff5LOiiNh"
+1501684002704	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/comment/Ff5LOiiNh"
+1501684002717	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/comment/Ff3dYpkAE"
+1501684002730	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/comment/Ff3dYpkAE"
+2017-08-02 22:26:42.743 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:42.743 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:42.744 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:42.744 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684002833	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/comment/Ff3dYpkAE"
+1501684005063	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/comment/Ff3dYpkAE"
+1501684005064	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/comment/Ff3dYpkAE"
+1501684005075	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/comment/Ff3dYpkAE"
+1501684005087	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/comment/Ff3dYpkAE"
+2017-08-02 22:26:45.097 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:45.097 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:45.098 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:45.098 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684005164	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/comment/Ff3dYpkAE"
+1501684006805	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/comment/Ff3dYpkAE"
+1501684006806	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/comment/Ff3dYpkAE"
+1501684006819	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/comment/Ff3dYpkAE"
+1501684006834	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/comment/Ff3dYpkAE"
+2017-08-02 22:26:46.848 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:46.848 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:46.849 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:46.849 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684006960	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/comment/Ff3dYpkAE"
+1501684008280	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/comment/Ff3dYpkAE"
+1501684008281	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/comment/Ff3dYpkAE"
+1501684008296	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/comment/Ff3dYpkAE"
+2017-08-02 22:26:48.324 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:48.324 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:48.324 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:48.324 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684008335	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/comment/Ff3dYpkAE"
+1501684008414	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/comment/Ff3dYpkAE"
+1501684009358	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/comment/Ff3dYpkAE"
+1501684009358	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/comment/Ff3dYpkAE"
+1501684009372	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/comment/FeZpICrgx"
+1501684009393	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/comment/FeZpICrgx"
+2017-08-02 22:26:49.414 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:49.414 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:49.415 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:49.415 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:49.437 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:49.437 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684009515	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/comment/FeZpICrgx"
+1501684010548	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/comment/FeZpICrgx"
+1501684010548	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/comment/FeZpICrgx"
+1501684010575	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/comment/FeXXafin7"
+2017-08-02 22:26:50.605 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:50.605 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:50.605 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:50.605 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:50.622 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:50.622 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684010626	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/comment/FeXXafin7"
+1501684010703	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/comment/FeXXafin7"
+1501684011669	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/comment/FeXXafin7"
+1501684011669	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/comment/FeXXafin7"
+1501684011705	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/5506682114"
+2017-08-02 22:26:51.865 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:51.865 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:51.866 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:51.866 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:51.866 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:51.866 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684012002	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/5506682114"
+1501684012199	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/5506682114"
+1501684012899	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/5506682114"
+1501684012899	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/5506682114"
+1501684012929	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/5506682114?page=1"
+1501684013013	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/5506682114?page=1"
+1501684013294	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/5506682114?page=1"
+1501684014369	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/5506682114?page=1"
+1501684014370	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/5506682114?page=1"
+1501684014383	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/comment/FffEVupQC"
+2017-08-02 22:26:54.427 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:54.427 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:54.428 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:54.428 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:54.441 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:54.441 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684014446	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/comment/FffEVupQC"
+1501684014527	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/comment/FffEVupQC"
+1501684015944	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/comment/FffEVupQC"
+1501684015944	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/comment/FffEVupQC"
+1501684015963	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/comment/Ff7DVjhNe"
+2017-08-02 22:26:55.990 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:55.990 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:55.991 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:55.991 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:56.004 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:56.004 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684016009	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/comment/Ff7DVjhNe"
+1501684016084	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/comment/Ff7DVjhNe"
+1501684017294	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/comment/Ff7DVjhNe"
+1501684017294	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/comment/Ff7DVjhNe"
+1501684017308	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/comment/FeZoU4Bmo"
+1501684017323	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/comment/FeZoU4Bmo"
+2017-08-02 22:26:57.340 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:57.340 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:57.342 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:57.342 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:57.359 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:57.359 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684017428	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/comment/FeZoU4Bmo"
+1501684018875	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/comment/FeZoU4Bmo"
+1501684018876	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/comment/FeZoU4Bmo"
+1501684018909	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/comment/FeT7WEOa8"
+2017-08-02 22:26:58.918 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:58.918 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:58.919 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:58.919 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:58.930 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:58.930 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684018941	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/comment/FeT7WEOa8"
+1501684019081	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/comment/FeT7WEOa8"
+1501684019821	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/comment/FeT7WEOa8"
+1501684019821	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/comment/FeT7WEOa8"
+1501684019846	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/1907214345"
+2017-08-02 22:26:59.903 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:59.903 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:59.904 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:59.904 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:59.904 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:59.904 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:59.975 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:59.975 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:59.976 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:59.976 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:26:59.977 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:26:59.977 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:00.011 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:00.011 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:00.012 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:00.012 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:00.013 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:00.013 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:00.082 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:00.082 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:00.083 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:00.083 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:00.084 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:00.084 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684020161	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/1907214345"
+1501684020357	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/1907214345"
+1501684021884	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/1907214345"
+1501684021885	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/1907214345"
+1501684021906	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/1907214345?page=1"
+1501684022011	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/1907214345?page=1"
+1501684022227	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/1907214345?page=1"
+1501684023484	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/1907214345?page=1"
+1501684023484	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/1907214345?page=1"
+1501684023500	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/comment/FeZsJE1bJ"
+2017-08-02 22:27:03.545 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:03.545 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:03.546 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:03.546 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684023563	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/comment/FeZsJE1bJ"
+1501684023634	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/comment/FeZsJE1bJ"
+1501684024684	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/comment/FeZsJE1bJ"
+1501684024684	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/comment/FeZsJE1bJ"
+1501684024696	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/xaymaca"
+2017-08-02 22:27:04.746 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:04.746 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:04.849 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:04.849 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:04.850 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:04.850 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:04.851 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:04.851 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684024913	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/xaymaca"
+2017-08-02 22:27:05.023 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:05.023 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:05.024 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:05.024 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:05.025 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:05.025 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684025201	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/xaymaca"
+1501684026698	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/xaymaca"
+1501684026698	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/xaymaca"
+1501684026723	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/xaymaca?page=1"
+1501684026809	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/xaymaca?page=1"
+1501684027207	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/xaymaca?page=1"
+1501684030801	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/xaymaca?page=1"
+1501684030801	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/xaymaca?page=1"
+1501684030819	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/comment/Ffe33wJdU"
+1501684030834	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/comment/Ffe33wJdU"
+2017-08-02 22:27:10.859 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:10.859 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:10.860 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:10.860 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684030930	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/comment/Ffe33wJdU"
+1501684031671	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/comment/Ffe33wJdU"
+1501684031671	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/comment/Ffe33wJdU"
+1501684031680	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/comment/FfdWaf5z6"
+1501684031690	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/comment/FfdWaf5z6"
+2017-08-02 22:27:11.704 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:11.704 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:11.705 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:11.705 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684031765	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/comment/FfdWaf5z6"
+1501684034111	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/comment/FfdWaf5z6"
+1501684034112	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/comment/FfdWaf5z6"
+1501684034125	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/1704422861"
+2017-08-02 22:27:14.159 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:14.159 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:14.160 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:14.160 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:14.161 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:14.161 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:14.277 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:14.277 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:14.278 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:14.278 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:14.278 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:14.278 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684034366	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/1704422861"
+1501684034562	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/1704422861"
+1501684036109	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/1704422861"
+1501684036109	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/1704422861"
+1501684036127	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/1704422861?page=1"
+1501684036222	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/1704422861?page=1"
+1501684036385	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/1704422861?page=1"
+1501684037514	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/1704422861?page=1"
+1501684037514	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/1704422861?page=1"
+1501684037526	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/comment/FePsdaNQX"
+2017-08-02 22:27:17.545 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:17.545 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:17.546 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:17.546 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:17.561 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:17.561 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684037579	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/comment/FePsdaNQX"
+1501684037746	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/comment/FePsdaNQX"
+1501684038405	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/comment/FePsdaNQX"
+1501684038405	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/comment/FePsdaNQX"
+1501684038418	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/comment/FePBOy3D3"
+2017-08-02 22:27:18.449 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:18.449 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:18.451 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:18.451 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684038465	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/comment/FePBOy3D3"
+1501684038536	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/comment/FePBOy3D3"
+1501684039682	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/comment/FePBOy3D3"
+1501684039683	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/comment/FePBOy3D3"
+1501684039698	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/comment/FePsdaNQX"
+2017-08-02 22:27:19.723 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:19.723 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:19.724 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:19.724 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:19.728 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:19.728 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684039738	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/comment/FePsdaNQX"
+1501684039819	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/comment/FePsdaNQX"
+1501684040504	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/comment/FePsdaNQX"
+1501684040504	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/comment/FePsdaNQX"
+1501684040520	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/lapetitprince"
+1501684040645	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/lapetitprince"
+2017-08-02 22:27:20.669 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:20.670 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:20.671 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:20.671 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:20.672 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:20.672 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684040875	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/lapetitprince"
+1501684041731	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/lapetitprince"
+1501684041732	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/lapetitprince"
+1501684041749	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/lapetitprince?page=1"
+1501684041843	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/lapetitprince?page=1"
+1501684042016	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/lapetitprince?page=1"
+1501684043046	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/lapetitprince?page=1"
+1501684043046	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/lapetitprince?page=1"
+1501684043065	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/comment/FehtWz7ei"
+2017-08-02 22:27:23.091 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:23.091 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:23.091 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:23.091 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684043112	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/comment/FehtWz7ei"
+1501684043181	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/comment/FehtWz7ei"
+1501684044784	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/comment/FehtWz7ei"
+1501684044784	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/comment/FehtWz7ei"
+1501684044807	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/508637358"
+2017-08-02 22:27:24.862 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:24.862 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:24.863 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:24.863 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:24.864 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:24.864 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684044920	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/508637358"
+2017-08-02 22:27:25.060 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:25.060 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:25.061 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:25.061 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:25.062 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:25.062 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684045239	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/508637358"
+1501684046970	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/508637358"
+1501684046971	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/508637358"
+1501684046985	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/508637358?page=1"
+1501684047045	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/508637358?page=1"
+1501684047494	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/508637358?page=1"
+1501684048320	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/508637358?page=1"
+1501684048321	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/508637358?page=1"
+1501684048359	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/comment/Ffgh4EVC3"
+1501684048375	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/comment/Ffgh4EVC3"
+2017-08-02 22:27:28.382 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:28.382 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:28.383 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:28.383 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684048443	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/comment/Ffgh4EVC3"
+1501684048909	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/comment/Ffgh4EVC3"
+1501684048909	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/comment/Ffgh4EVC3"
+1501684048930	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/comment/Fffza2cIu"
+1501684048933	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/comment/Fffza2cIu"
+2017-08-02 22:27:28.948 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:28.948 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:28.949 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:28.949 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684049022	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/comment/Fffza2cIu"
+1501684052360	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/comment/Fffza2cIu"
+1501684052360	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/comment/Fffza2cIu"
+1501684052376	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/comment/FfcPB19j2"
+1501684052393	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/comment/FfcPB19j2"
+2017-08-02 22:27:32.417 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:32.417 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:32.418 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:32.418 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:32.423 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:32.423 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684052629	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/comment/FfcPB19j2"
+1501684053759	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/comment/FfcPB19j2"
+1501684053760	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/comment/FfcPB19j2"
+1501684053772	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/508637358?page=2"
+2017-08-02 22:27:33.804 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:33.804 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:33.804 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:33.804 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:33.805 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:33.805 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684053814	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/508637358?page=2"
+1501684054408	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/508637358?page=2"
+1501684054707	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/508637358?page=2"
+1501684054708	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/508637358?page=2"
+1501684054722	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/comment/FfdDRhe1R"
+1501684054733	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/comment/FfdDRhe1R"
+2017-08-02 22:27:34.745 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:34.745 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:34.746 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:34.746 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684054823	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/comment/FfdDRhe1R"
+1501684056558	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/comment/FfdDRhe1R"
+1501684056559	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/comment/FfdDRhe1R"
+1501684056570	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/comment/FfdDRhe1R"
+1501684056580	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/comment/FfdDRhe1R"
+2017-08-02 22:27:36.588 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:36.588 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:36.589 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:36.589 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684056777	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/comment/FfdDRhe1R"
+1501684057649	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/comment/FfdDRhe1R"
+1501684057650	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/comment/FfdDRhe1R"
+1501684057664	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/comment/FfcPB19j2"
+1501684057680	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/comment/FfcPB19j2"
+2017-08-02 22:27:37.687 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:37.687 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:37.689 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:37.689 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:37.695 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:37.695 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684057760	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/comment/FfcPB19j2"
+1501684059149	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/comment/FfcPB19j2"
+1501684059150	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/comment/FfcPB19j2"
+1501684059164	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/508637358?page=3"
+2017-08-02 22:27:39.207 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:39.207 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:39.207 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:39.207 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:39.208 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:39.208 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684059280	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/508637358?page=3"
+2017-08-02 22:27:39.393 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:39.393 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:39.394 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:39.394 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:39.394 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:39.394 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684059638	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/508637358?page=3"
+1501684060337	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/508637358?page=3"
+1501684060338	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/508637358?page=3"
+1501684060357	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/comment/FfcPB19j2"
+1501684060380	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/comment/FfcPB19j2"
+2017-08-02 22:27:40.388 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:40.388 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:40.389 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:40.389 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:40.394 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:40.394 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684060458	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/comment/FfcPB19j2"
+1501684062258	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/comment/FfcPB19j2"
+1501684062259	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/comment/FfcPB19j2"
+1501684062270	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/comment/Ff4DIrbiS"
+1501684062284	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/comment/Ff4DIrbiS"
+2017-08-02 22:27:42.302 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:42.302 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:42.303 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:42.303 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684062376	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/comment/Ff4DIrbiS"
+1501684064098	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/comment/Ff4DIrbiS"
+1501684064099	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/comment/Ff4DIrbiS"
+1501684064115	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/comment/Ff4DIrbiS"
+1501684064127	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/comment/Ff4DIrbiS"
+2017-08-02 22:27:44.138 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:44.138 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:44.139 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:44.140 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684064322	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/comment/Ff4DIrbiS"
+1501684064675	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/comment/Ff4DIrbiS"
+1501684064676	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/comment/Ff4DIrbiS"
+1501684064711	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/comment/Ff4zCkHGy"
+1501684064717	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/comment/Ff4zCkHGy"
+2017-08-02 22:27:44.726 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:44.726 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:44.727 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:44.727 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684064819	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/comment/Ff4zCkHGy"
+1501684066275	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/comment/Ff4zCkHGy"
+1501684066277	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/comment/Ff4zCkHGy"
+1501684066290	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/1318809415"
+2017-08-02 22:27:46.327 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:46.327 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:46.328 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:46.328 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:46.328 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:46.328 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:46.477 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:46.477 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:46.478 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:46.478 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:46.479 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:46.479 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:46.556 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:46.556 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:46.557 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:46.557 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:46.558 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:46.558 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684066718	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/1318809415"
+1501684066918	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/1318809415"
+1501684067720	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/1318809415"
+1501684067720	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/1318809415"
+1501684067735	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/1318809415?page=1"
+1501684067825	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/1318809415?page=1"
+1501684068174	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/1318809415?page=1"
+1501684071306	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/1318809415?page=1"
+1501684071307	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/1318809415?page=1"
+1501684071324	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/1318809415?page=2"
+2017-08-02 22:27:51.362 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:51.362 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:51.363 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:51.363 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:51.364 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:51.364 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684071437	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/1318809415?page=2"
+2017-08-02 22:27:51.611 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:51.611 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:51.612 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:51.612 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:51.613 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:51.613 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684071750	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/1318809415?page=2"
+1501684072227	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/1318809415?page=2"
+1501684072228	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/1318809415?page=2"
+1501684072246	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/comment/Ff6ESmafi"
+2017-08-02 22:27:52.287 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:52.287 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:52.288 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:52.288 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684072298	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/comment/Ff6ESmafi"
+1501684072373	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/comment/Ff6ESmafi"
+1501684072839	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/comment/Ff6ESmafi"
+1501684072839	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/comment/Ff6ESmafi"
+1501684072890	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/comment/Ff6ESmafi"
+1501684072899	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/comment/Ff6ESmafi"
+2017-08-02 22:27:52.912 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:52.912 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:52.913 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:52.913 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684073127	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/comment/Ff6ESmafi"
+1501684074519	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/comment/Ff6ESmafi"
+1501684074519	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/comment/Ff6ESmafi"
+1501684074533	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/1614106000"
+2017-08-02 22:27:54.689 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:54.690 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:54.691 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:54.691 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:54.692 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:54.692 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:54.728 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:54.728 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:54.730 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:54.730 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:54.731 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:54.731 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684074946	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/1614106000"
+1501684075186	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/1614106000"
+1501684076447	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/1614106000"
+1501684076447	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/1614106000"
+1501684076462	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/1614106000?page=1"
+1501684076568	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/1614106000?page=1"
+1501684076720	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/1614106000?page=1"
+1501684079002	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/1614106000?page=1"
+1501684079003	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/1614106000?page=1"
+1501684079015	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/cloudly"
+2017-08-02 22:27:59.046 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:59.046 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:59.047 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:59.047 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:59.048 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:59.048 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:59.129 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:59.129 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:59.130 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:59.131 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:59.131 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:59.131 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:59.165 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:59.165 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:59.166 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:59.166 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:27:59.167 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:27:59.167 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684079402	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/cloudly"
+1501684079798	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/cloudly"
+1501684080520	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/cloudly"
+1501684080521	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/cloudly"
+1501684080533	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/cloudly?page=1"
+1501684080615	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/cloudly?page=1"
+1501684080774	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/cloudly?page=1"
+1501684081772	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/cloudly?page=1"
+1501684081772	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/cloudly?page=1"
+1501684081821	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/comment/Ff3Pgo5pb"
+1501684081825	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/comment/Ff3Pgo5pb"
+2017-08-02 22:28:01.864 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:01.864 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:28:01.865 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:01.865 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684081942	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/comment/Ff3Pgo5pb"
+1501684083184	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/comment/Ff3Pgo5pb"
+1501684083185	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/comment/Ff3Pgo5pb"
+1501684083208	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/2538681243"
+2017-08-02 22:28:03.253 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:03.253 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:28:03.255 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:03.255 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:28:03.255 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:03.255 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:28:03.316 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:03.316 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:28:03.317 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:03.317 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:28:03.318 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:03.318 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684083346	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/2538681243"
+1501684083527	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/2538681243"
+1501684084596	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/2538681243"
+1501684084597	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/2538681243"
+1501684084616	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/2538681243?page=1"
+1501684084705	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/2538681243?page=1"
+1501684084840	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/2538681243?page=1"
+1501684086154	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/2538681243?page=1"
+1501684086155	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/2538681243?page=1"
+1501684086167	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/wpeak"
+2017-08-02 22:28:06.310 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:06.310 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:28:06.311 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:06.311 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:28:06.311 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:06.311 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:28:06.359 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:06.359 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:28:06.360 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:06.360 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:28:06.361 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:06.361 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684086464	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/wpeak"
+1501684086831	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/wpeak"
+1501684087606	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/wpeak"
+1501684087606	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/wpeak"
+1501684087622	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/wpeak?page=1"
+1501684087722	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/wpeak?page=1"
+1501684087893	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/wpeak?page=1"
+1501684089449	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/wpeak?page=1"
+1501684089450	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/wpeak?page=1"
+1501684089467	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/comment/FeLpIojiM"
+2017-08-02 22:28:09.500 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:09.500 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:28:09.501 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:09.501 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:28:09.512 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:09.512 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684089521	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/comment/FeLpIojiM"
+1501684089596	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/comment/FeLpIojiM"
+1501684091683	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/comment/FeLpIojiM"
+1501684091684	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/comment/FeLpIojiM"
+1501684091700	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/comment/Fe9C1ht1N"
+1501684091724	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/comment/Fe9C1ht1N"
+2017-08-02 22:28:11.734 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:11.734 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:28:11.734 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:11.734 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:28:11.747 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:11.747 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684091811	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/comment/Fe9C1ht1N"
+1501684092622	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/comment/Fe9C1ht1N"
+1501684092623	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/comment/Fe9C1ht1N"
+1501684092664	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/kuhasu"
+2017-08-02 22:28:12.683 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:12.683 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:28:12.684 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:12.684 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:28:12.685 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:12.685 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:28:12.804 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:12.804 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:28:12.805 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:12.805 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:28:12.806 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:12.806 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:28:12.830 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:12.830 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:28:12.831 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:12.831 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:28:12.832 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:12.832 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:28:12.899 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:12.899 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:28:12.901 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:12.901 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:28:12.901 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:12.901 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684095420	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/kuhasu"
+1501684095833	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/kuhasu"
+1501684096517	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/kuhasu"
+1501684096517	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/kuhasu"
+1501684096537	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/kuhasu?page=1"
+1501684096630	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/kuhasu?page=1"
+1501684096907	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/kuhasu?page=1"
+1501684097736	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/kuhasu?page=1"
+1501684097736	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/kuhasu?page=1"
+1501684097752	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/comment/FfhrbpeAA"
+2017-08-02 22:28:17.782 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:17.782 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:28:17.783 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:17.783 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684097834	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/comment/FfhrbpeAA"
+1501684097908	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/comment/FfhrbpeAA"
+1501684098807	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/comment/FfhrbpeAA"
+1501684098807	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/comment/FfhrbpeAA"
+1501684098819	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/3235523970"
+2017-08-02 22:28:18.994 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:18.994 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:28:18.995 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:18.995 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:28:18.995 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:18.995 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684099117	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/3235523970"
+1501684099504	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/3235523970"
+1501684100021	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/3235523970"
+1501684100021	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/3235523970"
+1501684100057	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/3235523970?page=1"
+1501684100122	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/3235523970?page=1"
+1501684100491	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/3235523970?page=1"
+1501684101513	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/3235523970?page=1"
+1501684101518	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/3235523970?page=1"
+1501684101553	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/comment/FfeEb67Ei"
+2017-08-02 22:28:21.563 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:21.563 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:28:21.564 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:21.564 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:28:21.572 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:21.572 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684101583	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/comment/FfeEb67Ei"
+1501684101650	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/comment/FfeEb67Ei"
+1501684102452	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/comment/FfeEb67Ei"
+1501684102452	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/comment/FfeEb67Ei"
+1501684102465	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/3235523970?page=2"
+2017-08-02 22:28:22.574 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:22.574 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:28:22.575 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:22.575 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:28:22.576 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:22.576 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684102733	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/3235523970?page=2"
+2017-08-02 22:28:22.752 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:22.752 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:28:22.753 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:22.753 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:28:22.753 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:22.753 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684103084	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/3235523970?page=2"
+1501684103380	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/3235523970?page=2"
+1501684103380	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/3235523970?page=2"
+1501684103412	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/comment/Ff8DEz9o1"
+1501684103417	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/comment/Ff8DEz9o1"
+2017-08-02 22:28:23.423 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:23.423 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:28:23.424 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:23.424 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684103487	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/comment/Ff8DEz9o1"
+1501684104398	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/comment/Ff8DEz9o1"
+1501684104399	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/comment/Ff8DEz9o1"
+1501684104415	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/comment/Ff8oDtw7B"
+2017-08-02 22:28:24.435 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:24.435 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:28:24.437 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:24.437 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684104588	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/comment/Ff8oDtw7B"
+1501684104845	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/comment/Ff8oDtw7B"
+1501684105814	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/comment/Ff8oDtw7B"
+1501684105814	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/comment/Ff8oDtw7B"
+1501684105824	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/comment/Ff8gNEE77"
+1501684105844	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/comment/Ff8gNEE77"
+2017-08-02 22:28:25.857 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:25.857 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:28:25.858 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:25.858 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:28:25.864 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:25.864 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501684105942	Marionette	DEBUG	Received DOM event "beforeunload" for "https://weibo.cn/comment/Ff8gNEE77"
+1501684106363	Marionette	DEBUG	Received DOM event "pagehide" for "https://weibo.cn/comment/Ff8gNEE77"
+1501684106363	Marionette	DEBUG	Received DOM event "unload" for "https://weibo.cn/comment/Ff8gNEE77"
+1501684106404	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/comment/Ff8bL2vvk"
+1501684106408	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/comment/Ff8bL2vvk"
+2017-08-02 22:28:26.424 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:26.424 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-02 22:28:26.424 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-02 22:28:26.424 plugin-container[88071:10987542] Warning: did not get back top right metric
+*************************
+A coding exception was thrown and uncaught in a Task.
+
+Full message: TypeError: NetworkError when attempting to fetch resource.
+Full stack: 
+*************************
+2017-08-03 10:14:42.291 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-03 10:14:42.292 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-03 10:14:42.303 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-03 10:14:42.303 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-03 10:14:44.064 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-03 10:14:44.064 plugin-container[88071:10987542] Warning: did not get back top right metric
+2017-08-03 10:14:44.066 plugin-container[88071:10987542] Warning: did not get back bottom left metric
+2017-08-03 10:14:44.066 plugin-container[88071:10987542] Warning: did not get back top right metric
+1501726484982	Marionette	INFO	Ceased listening
+1501767367291	geckodriver	INFO	Listening on 127.0.0.1:51036
+1501767368383	geckodriver::marionette	INFO	Starting browser /Applications/Firefox.app/Contents/MacOS/firefox-bin with args ["-marionette"]
+1501767371072	Marionette	INFO	Listening on port 51106
+1501767371153	Marionette	WARN	TLS certificate errors will be ignored for this session
+1501767371512	Marionette	DEBUG	loaded listener.js
+1501767371610	Marionette	DEBUG	Received DOM event "beforeunload" for "about:blank"
+2017-08-03 21:36:11.708 plugin-container[1893:11354206] *** CFMessagePort: bootstrap_register(): failed 1100 (0x44c) 'Permission denied', port = 0x963b, name = 'com.apple.tsm.portname'
+See /usr/include/servers/bootstrap_defs.h for the error codes.
+2017-08-03 21:36:11.712 plugin-container[1893:11354206] *** CFMessagePort: bootstrap_register(): failed 1100 (0x44c) 'Permission denied', port = 0x9903, name = 'com.apple.CFPasteboardClient'
+See /usr/include/servers/bootstrap_defs.h for the error codes.
+1501767375105	Marionette	DEBUG	Received DOM event "pagehide" for "about:blank"
+1501767375106	Marionette	DEBUG	Received DOM event "unload" for "about:blank"
+1501767375119	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "http://weibo.com/"
+1501767375122	Marionette	DEBUG	Received DOM event "pageshow" for "http://weibo.com/"
+1501767387021	Marionette	DEBUG	Canceled page load listener because no navigation has been detected
+1501767389191	Marionette	DEBUG	Canceled page load listener because no navigation has been detected
+1501767419267	Marionette	DEBUG	Received DOM event "beforeunload" for "http://weibo.com/?c=spr_sinamkt_buy_hyww_weibo_t140#_loginLayer_1501767387770"
+1501767421980	Marionette	DEBUG	Received DOM event "pagehide" for "http://weibo.com/?c=spr_sinamkt_buy_hyww_weibo_t140#_loginLayer_1501767387770"
+1501767421982	Marionette	DEBUG	Received DOM event "unload" for "http://weibo.com/?c=spr_sinamkt_buy_hyww_weibo_t140#_loginLayer_1501767387770"
+1501767422002	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://weibo.cn/bladeofwind"
+2017-08-03 21:37:02.117 plugin-container[1893:11354206] Warning: did not get back bottom left metric
+2017-08-03 21:37:02.117 plugin-container[1893:11354206] Warning: did not get back top right metric
+2017-08-03 21:37:02.159 plugin-container[1893:11354206] Warning: did not get back bottom left metric
+2017-08-03 21:37:02.159 plugin-container[1893:11354206] Warning: did not get back top right metric
+2017-08-03 21:37:02.160 plugin-container[1893:11354206] Warning: did not get back bottom left metric
+2017-08-03 21:37:02.160 plugin-container[1893:11354206] Warning: did not get back top right metric
+1501767422172	Marionette	DEBUG	Received observer notification "outer-window-destroyed" for "2147483656"
+2017-08-03 21:37:03.082 plugin-container[1893:11354206] Warning: did not get back bottom left metric
+2017-08-03 21:37:03.082 plugin-container[1893:11354206] Warning: did not get back top right metric
+2017-08-03 21:37:03.087 plugin-container[1893:11354206] Warning: did not get back bottom left metric
+2017-08-03 21:37:03.087 plugin-container[1893:11354206] Warning: did not get back top right metric
+2017-08-03 21:37:03.088 plugin-container[1893:11354206] Warning: did not get back bottom left metric
+2017-08-03 21:37:03.088 plugin-container[1893:11354206] Warning: did not get back top right metric
+2017-08-03 21:37:03.129 plugin-container[1893:11354206] Warning: did not get back bottom left metric
+2017-08-03 21:37:03.129 plugin-container[1893:11354206] Warning: did not get back top right metric
+2017-08-03 21:37:03.136 plugin-container[1893:11354206] Warning: did not get back bottom left metric
+2017-08-03 21:37:03.136 plugin-container[1893:11354206] Warning: did not get back top right metric
+2017-08-03 21:37:03.138 plugin-container[1893:11354206] Warning: did not get back bottom left metric
+2017-08-03 21:37:03.139 plugin-container[1893:11354206] Warning: did not get back top right metric
+1501767424291	Marionette	DEBUG	Received DOM event "pageshow" for "https://weibo.cn/bladeofwind"
+2017-08-03 21:45:52.183 plugin-container[1893:11354206] Warning: did not get back bottom left metric
+2017-08-03 21:45:52.183 plugin-container[1893:11354206] Warning: did not get back top right metric
+2017-08-03 21:45:52.200 plugin-container[1893:11354206] Warning: did not get back bottom left metric
+2017-08-03 21:45:52.200 plugin-container[1893:11354206] Warning: did not get back top right metric
+2017-08-03 21:45:52.201 plugin-container[1893:11354206] Warning: did not get back bottom left metric
+2017-08-03 21:45:52.201 plugin-container[1893:11354206] Warning: did not get back top right metric
+2017-08-03 21:45:53.420 plugin-container[1893:11354206] Warning: did not get back bottom left metric
+2017-08-03 21:45:53.420 plugin-container[1893:11354206] Warning: did not get back top right metric
+2017-08-03 21:45:53.429 plugin-container[1893:11354206] Warning: did not get back bottom left metric
+2017-08-03 21:45:53.429 plugin-container[1893:11354206] Warning: did not get back top right metric
+2017-08-03 21:45:53.429 plugin-container[1893:11354206] Warning: did not get back bottom left metric
+2017-08-03 21:45:53.429 plugin-container[1893:11354206] Warning: did not get back top right metric
+1501767953735	Marionette	INFO	Ceased listening

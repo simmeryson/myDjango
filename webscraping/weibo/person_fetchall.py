@@ -27,7 +27,7 @@ person_list = [('bladeofwind', ur'勿怪幸'), ('1852299857', ur'屠龙的胭脂
                ('1907214345', ur'侯安扬HF '), ('xaymaca', ur'交易员评论'), ('1704422861', ur'振波二象'),
                ('lapetitprince', ur'杰瑞Au'), ('508637358', ur'___ER___'), ('1318809415', ur'yanhaijin'),
                ('1614106000', ur'椒图炼丹炉'), ('cloudly', ur'cloudly'), ('2538681243', ur'小不丢灵'), ('wpeak', ur'西峯'),
-               ('kuhasu', u'kuhasu'), ('3235523970', ur'霸王日本金融生活史')]
+               ('kuhasu', u'kuhasu'), ('3235523970', ur'霸王日本金融生活史'), ('1979899604', ur'涨涨麻麻')]
 
 driver = webdriver.Firefox(executable_path='/usr/local/bin/geckodriver')
 wait = ui.WebDriverWait(driver, 10)
@@ -224,6 +224,7 @@ def get_quanwen_item(db, user_id):
     """全文还需要打开"""
     quanwen_list = driver.find_elements_by_xpath("//span[a='全文']")
     url_list = [quanwen_span.find_element_by_xpath("./a").get_attribute('href') for quanwen_span in quanwen_list]
+    print u"全文 url: \r\n" + '\r\n'.join(url_list)
     for url_ in url_list:
         split_url = url_.split('/')
         if not split_url[-2] == 'comment':
@@ -232,7 +233,6 @@ def get_quanwen_item(db, user_id):
         find_wait_by_xpath("//input[@value='评论' and @type='submit']")
         out = driver.find_element_by_xpath("//body").get_attribute('outerHTML')
         maps = {'id': split_url[-1], 'userId': user_id, 'outerHtml': out}
-        print u"全文: " + split_url[-1]
         db.insert_db_values(insert_quanwen_values(), insert_quanwen_dic(maps))
 
 
@@ -241,13 +241,13 @@ def parse_weibo_item(url, page, db, user_id):
     print u'访问 page = ' + item_url
     driver.get(item_url)
     find_wait_by_xpath("//input[@name='mp' and @type='hidden']")
-    # for item in driver.find_elements_by_xpath("//div[@class='c']")[::-1]:
-    #     _id = item.get_attribute('id')
-    #     if _id:
-    #         # inner = item.get_attribute("innerHTML")
-    #         outer = item.get_attribute("outerHTML")
-    #         dic = {'id': _id, 'outerHtml': outer}
-    #         db.insert_db_values(insert_sql_values(user_id), insert_dic(dic))
+    for item in driver.find_elements_by_xpath("//div[@class='c']")[::-1]:
+        _id = item.get_attribute('id')
+        if _id:
+            # inner = item.get_attribute("innerHTML")
+            outer = item.get_attribute("outerHTML")
+            dic = {'id': _id, 'outerHtml': outer}
+            db.insert_db_values(insert_sql_values(user_id), insert_dic(dic))
     get_quanwen_item(db, user_id)
 
 
@@ -288,7 +288,7 @@ def parse_new_item(url, page, db, user_id, new_dic, ids):
             outer = item.get_attribute("outerHTML")
             new_dic[_id] = outer
             # print u'更新 ' + str(len(new_dic)) + u' 条'
-            if ids == _id:
+            if _id in ids:
                 save_whole_page(db, new_dic, user_id)
                 get_quanwen_item(db, user_id)
                 return True
@@ -371,17 +371,17 @@ def insert_dic(dic):
 
 
 def query_last_item_id(db, table_name):
-    """置顶问题"""
-    sql = 'select `itemId`,`contentHtml` from `%s` order by id desc limit 2' % table_name
+    """置顶问题和删除问题,需要多检验几条"""
+    sql = 'select `itemId`,`contentHtml` from `%s` order by id desc limit 5' % table_name
     ids = db.query(sql)
     if len(ids) == 0:
-        return '-1'
+        return ['-1']
     elif len(ids) == 1:
-        return ids[0][0]
+        return [ids[0][0]]
     elif str(ids[0][1]).find('置顶') != -1:
-        return ids[1][0]
+        return [ids[i][0] for i in range(1, len(ids))]
     else:
-        return ids[0][0]
+        return [ids[i][0] for i in range(0, len(ids))]
 
 
 def create_quanwen_table():
@@ -414,6 +414,6 @@ def insert_quanwen_dic(dic):
     return (dic['id'], dic['userId'], dic['outerHtml'])
 
 
-fetch_all_personal()
+# fetch_all_personal()
 
-# fetch_new_weibo()
+fetch_new_weibo()
